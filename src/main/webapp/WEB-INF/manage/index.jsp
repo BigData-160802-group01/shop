@@ -1,3 +1,5 @@
+<%@ page import="java.util.Date" %>
+<%@ page import="java.text.SimpleDateFormat" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page isELIgnored="false" %>
@@ -26,7 +28,7 @@
 </div>
 <div id="childNav">
 	<div class="welcome wrap">
-		管理员${LoginUser.name}您好，今天是2012-12-21，欢迎回到管理后台。
+		管理员 [${LoginUser.password}] 您好，今天是<%=new SimpleDateFormat("yyyy-MM-dd").format(new Date())%>，欢迎回到管理后台。
 	</div>
 </div>
 <div id="position" class="wrap">
@@ -37,9 +39,9 @@
 		<div class="box">
 			<dl>
 				<dt>用户管理</dt>
-				<dd><a href="/user/manager/user/list">用户管理</a></dd>
+				<dd><a href="/manager/user/list">用户管理</a></dd>
 			  <dt>商品信息</dt>
-				<dd><em><a href="/page/manage/productClass-add.jsp">新增</a></em><a href="/page/manage/productClass.jsp">分类管理</a></dd>
+				<dd><em><a href="/page/manage/productClass-add.jsp">新增</a></em><a href="/manager/productClass/list">分类管理</a></dd>
 				<dd><em><a href="/page/manage/product-add.jsp">新增</a></em><a href="/page/manage/product.jsp">商品管理</a></dd>
 				<dt>订单管理</dt>
 				<dd><a href="/page/manage/order.jsp">订单管理</a></dd>

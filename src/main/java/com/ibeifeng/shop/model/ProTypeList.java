@@ -3,6 +3,7 @@ package com.ibeifeng.shop.model;
 
 import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
+import java.util.Set;
 
 /**
  * Created by Administrator on 2016/12/1.
@@ -11,7 +12,8 @@ import javax.persistence.*;
 @Table(name = "t_protypelist")
 public class ProTypeList {
     private int id;
-    private String totalListName;
+        private String totalListName;
+    private Set< ProType> type;
     @Id
     @GeneratedValue(generator = "increment")
     @GenericGenerator(name = "increment",strategy = "increment")
@@ -42,5 +44,14 @@ public class ProTypeList {
 
     public ProTypeList(String totalListName) {
         this.totalListName = totalListName;
+    }
+
+    @OneToMany(mappedBy = "proTypeList")
+    public Set<ProType> getType() {
+        return type;
+    }
+
+    public void setType(Set<ProType> type) {
+        this.type = type;
     }
 }

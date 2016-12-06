@@ -1,4 +1,6 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page isELIgnored="false" %>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -10,7 +12,7 @@
 <body>
 <div id="header" class="wrap">
 	<div id="logo"><img src="/resources/images/logo.gif" /></div>
-	<div class="help"><a href="shopping.html" class="shopping">购物车X件</a><a href="login.jsp">登录</a><a href="register.jsp">注册</a><a href="guestbook.html">留言</a><a href="manage/index.jsp">后台管理</a></div>
+	<div class="help"><a href="shopping.jsp" class="shopping">购物车X件</a><a href="login.jsp">登录</a><a href="register.jsp">注册</a><a href="guestbook.jsp">留言</a><a href="manage/index.jsp">后台管理</a></div>
 	<div class="navbar">
 		<ul class="clearfix">
 			<li class="current"><a href="#">首页</a></li>
@@ -44,42 +46,24 @@
 	</div>
 </div>
 <div id="position" class="wrap">
-	您现在的位置：<a href="index.jsp">易买网</a> &gt; 阅读新闻
+	您现在的位置：<a href="index.jsp">易买网</a> &gt; 购物车
 </div>
-<div id="main" class="wrap">
-	<div class="lefter">
-		<div class="box">
-			<h2>商品分类</h2>
-			<dl>
-				<dt>图书音像</dt>
-				<dd><a href="product-list.html">图书</a></dd>
-				<dd><a href="product-list.html">音乐</a></dd>
-				<dt>百货</dt>
-				<dd><a href="product-list.html">运动健康</a></dd>
-				<dd><a href="product-list.html">服装</a></dd>
-				<dd><a href="product-list.html">家居</a></dd>
-				<dd><a href="product-list.html">美妆</a></dd>
-				<dd><a href="product-list.html">母婴</a></dd>
-				<dd><a href="product-list.html">食品</a></dd>
-				<dd><a href="product-list.html">手机数码</a></dd>
-				<dd><a href="product-list.html">家具首饰</a></dd>
-				<dd><a href="product-list.html">手表饰品</a></dd>
-				<dd><a href="product-list.html">鞋包</a></dd>
-				<dd><a href="product-list.html">家电</a></dd>
-				<dd><a href="product-list.html">电脑办公</a></dd>
-				<dd><a href="product-list.html">玩具文具</a></dd>
-				<dd><a href="product-list.html">汽车用品</a></dd>
-			</dl>
+<div class="wrap">
+	<div id="shopping">
+		<div class="shadow">
+			<em class="corner lb"></em>
+			<em class="corner rt"></em>
+			<div class="box">
+				<div class="msg">
+					<p>恭喜：购买成功！</p>
+					<p>正在进入首页...</p>
+					<script type="text/javascript">
+						setTimeout("location.href='index.jsp'", 3000);
+					</script>
+				</div>
+			</div>
 		</div>
 	</div>
-	</div>
-	<div id="news" class="right-main">
-		<h1>铁三角 Audio-Technica ATH-EQ300M-SV 银色 挂耳式耳机</h1>
-		<div class="content">
-			f
-		</div>
-	</div>
-	<div class="clear"></div>
 </div>
 <div id="footer">
 	Copyright &copy; 2013 北大青鸟 All Rights Reserved. 京ICP证1000001号

@@ -1,3 +1,5 @@
+<%@ page import="java.util.Date" %>
+<%@ page import="java.text.SimpleDateFormat" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page isELIgnored="false" %>
@@ -16,9 +18,9 @@
 	<div class="navbar">
 		<ul class="clearfix">
 			<li><a href="index.jsp">首页</a></li>
-			<li class="current"><a href="user.jsp">用户</a></li>
+			<li><a href="user.jsp">用户</a></li>
 			<li><a href="product.jsp">商品</a></li>
-			<li><a href="order.jsp">订单</a></li>
+			<li class="current"><a href="order.jsp">订单</a></li>
 			<li><a href="guestbook.jsp">留言</a></li>
 			<li><a href="news.jsp">新闻</a></li>
 		</ul>
@@ -26,7 +28,7 @@
 </div>
 <div id="childNav">
 	<div class="welcome wrap">
-		管理员pillys您好，今天是2012-12-21，欢迎回到管理后台。
+		管理员 [${LoginUser.nickname}] 您好，今天是<%=new SimpleDateFormat("yyyy-MM-dd").format(new Date())%>，欢迎回到管理后台。
 	</div>
 </div>
 <div id="position" class="wrap">
@@ -51,34 +53,51 @@
 		</div>
 	</div>
 	<div class="main">
-		<h2>用户管理</h2>
+		<h2>订单管理</h2>
 		<div class="manage">
+			<div class="search">				
+			</div>
+			<div class="spacer"></div>
+            <form id="orderForm" method="post"  action="Order">
+                 订单号：<input type="text" class="text" name="entityId" id="entityId" />
+                 订货人：<input type="text" class="text" name="userName" />
+                 <label class="ui-blue"><input type="submit" name="submit" value="查询" /></label>
+            </form>
 			<table class="list">
 				<tr>
-					<th>用户名</th>
-					<th>真实姓名</th>
-					<th>性别</th>
-					<th>Email</th>
-					<th>手机</th>
-					<th>操作</th>
+					<th colspan="2">单号：1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 时间：2013-3-16</th>					
+					<th colspan="2">状态:收货确认</th>					
 				</tr>
-				<c:if test="${userlist.datas!=null}">
-					<c:forEach var="user" items="${userlist.datas}">
-						<tr>
-							<td class="first w4 c">${user.name}</td>
-							<td class="w1 c">${user.nickname}</td>
-							<td class="w2 c">${user.sex}</td>
-							<td>${user.email}</td>
-							<td class="w4 c">${user.phone}</td>
-							<td class="w1 c"><a href="/user/manager/user/modify/${user.id}">修改</a> <a class="manageDel" href="javascript:void(0)">删除</a></td>
-						</tr>
-					</c:forEach>
-				</c:if>
+				<tr>
+					<td class="first w4 c"><img src="/resources/images/product/1.jpg" />画册</td>
+					<td >100</td>
+					<td>1</td>
+					<td class="w1 c" rowspan="2">总计：140</td>					
+				</tr>
+				<tr>
+					<td class="first w4 c"><img src="/resources/images/product/2.jpg" />项链</td>
+					<td >40</td>
+					<td>1</td>			
+				</tr>
+                	<tr>
+					<th colspan="2">单号：2 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;时间：2013-5-16</th>
+					<th colspan="2">状态:待审核<select name="status" >						    
+								<option value="1"  >待审核</option>
+								<option value="2"  >审核通过</option>
+								<option value="3"  >配货</option>
+								<option value="4" >发货</option>
+								<option value="5"  >收货确认</option>
+							
+						</select></th>					
+				</tr>
+				<tr>
+					<td class="first w4 c"><img src="/resources/images/product/3.jpg" />护肤王</td>
+					<td >400</td>
+					<td>1</td>
+					<td class="w1 c">总计：400</td>					
+				</tr>				
 			</table>
-		</div>
-	</div>
-	<div class="clear"></div>
-     <div class="pager">
+			<div class="pager">
 				<ul class="clearfix">
 					<li><a >首页</a></li>
 					<li>...</li>
@@ -89,6 +108,9 @@
 					<li><a >尾页</a></li>
 				</ul>
 			</div>
+		</div>
+	</div>
+	<div class="clear"></div>
 </div>
 <div id="footer">
 	Copyright &copy; 2013 北大青鸟 All Rights Reserved. 京ICP证1000001号

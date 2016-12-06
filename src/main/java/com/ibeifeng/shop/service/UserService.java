@@ -19,6 +19,7 @@ import java.util.Map;
 @Service
 public class UserService implements IUserService {
     private IUserDao userDao;
+    private IShopService shopService;
     public String login(String username, String password, HttpSession session) {
         User user=userDao.load(username,password);
         if (user==null){
@@ -78,6 +79,10 @@ public class UserService implements IUserService {
         session.getServletContext().setAttribute("loginUM",loginUserMap);
     }
 
+    public void delete(User user){
+        userDao.delete(user.getId());
+        shopService.delete(user.getShop().getId());
+    }
     /**
      * 获取所有用户的信息
      * @return
@@ -112,6 +117,10 @@ public class UserService implements IUserService {
             return "false";
         }
         return "";
+    }
+    @Resource
+    public void setShopService(IShopService shopService) {
+        this.shopService = shopService;
     }
 
     @Resource

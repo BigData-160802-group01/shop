@@ -1,3 +1,5 @@
+<%@ page import="java.text.SimpleDateFormat" %>
+<%@ page import="java.util.Date" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page isELIgnored="false" %>
@@ -17,16 +19,16 @@
 		<ul class="clearfix">
 			<li><a href="index.jsp">首页</a></li>
 			<li><a href="user.jsp">用户</a></li>
-			<li><a href="product.jsp">商品</a></li>
+			<li class="current"><a href="product.jsp">商品</a></li>
 			<li><a href="order.jsp">订单</a></li>
 			<li><a href="guestbook.jsp">留言</a></li>
-			<li class="current"><a href="news.jsp">新闻</a></li>
+			<li><a href="news.jsp">新闻</a></li>
 		</ul>
 	</div>
 </div>
 <div id="childNav">
 	<div class="welcome wrap">
-		管理员pillys您好，今天是2012-12-21，欢迎回到管理后台。
+		管理员 [${LoginUser.nickname}] 您好，今天是<%=new SimpleDateFormat("yyyy-MM-dd").format(new Date())%>，欢迎回到管理后台。
 	</div>
 </div>
 <div id="position" class="wrap">
@@ -51,28 +53,53 @@
 		</div>
 	</div>
 	<div class="main">
-		<h2>添加新闻</h2>
+		<h2>修改商品</h2>
 		<div class="manage">
-			<form id="newsAdd" action="manage-result.jsp">
+			<form action="manage-result.jsp">
 				<table class="form">
 					<tr>
-						<td class="field">新闻标题：</td>
-						<td><input type="text" class="text" name="title" value="" /><span></span></td>
+						<td class="field">商品名称(*)：</td>
+						<td><input type="text" class="text" name="productName" value="铁三角 Audio-Technica ATH-EQ300M-SV 银色 挂耳式耳机" /></td>
+					</tr>
+                    <tr>
+						<td class="field">描述：</td>
+						<td><input type="text" class="text" name="productName" /></td>
 					</tr>
 					<tr>
-						<td class="field">新闻内容：</td>
-						<td><textarea class="text" name="content"></textarea><span></span></td>
+						<td class="field">所属分类：</td>
+						<td>
+							<select name="parentId">
+								<option value="1">电器</option>
+								<option value="3">├ 电器</option>
+								<option value="3">└ 电器</option>
+								<option value="2">衣服</option>
+								<option value="3">├ 电器</option>
+								<option value="3">└ 电器</option>
+							</select>
+						</td>
+					</tr>					
+					<tr>
+						<td class="field">商品价格(*)：</td>
+						<td><input type="text" class="text tiny" name="productPrice" /> 元</td>
+					</tr>
+					
+					<tr>
+						<td class="field">库存(*)：</td>
+						<td><input type="text" class="text tiny" name="productName" /></td>
+					</tr>
+					<tr>
+						<td class="field">商品图片：</td>
+						<td><input type="file" class="text" name="photo" /></td>
 					</tr>
 					<tr>
 						<td></td>
-						<td><label class="ui-blue"><input type="submit" name="submit" value="添加" /></label></td>
+						<td><label class="ui-blue"><input type="submit" name="submit" value="确定" /></label></td>
 					</tr>
 				</table>
 			</form>
 		</div>
 	</div>
 	<div class="clear"></div>
-    
 </div>
 <div id="footer">
 	Copyright &copy; 2013 北大青鸟 All Rights Reserved. 京ICP证1000001号

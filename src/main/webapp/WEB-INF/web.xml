@@ -12,6 +12,14 @@
         <param-value>classpath:spring.xml</param-value>
     </context-param>
     <filter>
+        <filter-name>urlFilter</filter-name>
+        <filter-class>com.ibeifeng.shop.filter.ValiadFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>urlFilter</filter-name>
+        <url-pattern>/manager/*</url-pattern>
+    </filter-mapping>
+    <filter>
         <filter-name>characterEnconding</filter-name>
         <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
         <init-param>
@@ -23,6 +31,7 @@
         <filter-name>characterEnconding</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
+
     <filter>
         <filter-name>pageFilte</filter-name>
         <filter-class>com.ibeifeng.shop.filter.PageFilter</filter-class>
@@ -40,6 +49,7 @@
     <filter-name>osiv</filter-name>
     <url-pattern>/*</url-pattern>
     </filter-mapping>
+
     <!--spring监听器-->
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
@@ -53,4 +63,5 @@
         <servlet-name>spring</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>
+
 </web-app>

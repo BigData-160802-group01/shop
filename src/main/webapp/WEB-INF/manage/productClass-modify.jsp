@@ -1,3 +1,5 @@
+<%@ page import="java.util.Date" %>
+<%@ page import="java.text.SimpleDateFormat" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page isELIgnored="false" %>
@@ -15,9 +17,9 @@
 	<div class="help"><a href="/page/index.jsp">返回前台页面</a></div>
 	<div class="navbar">
 		<ul class="clearfix">
-			<li class="current"><a href="index.jsp">首页</a></li>
+			<li><a href="index.jsp">首页</a></li>
 			<li><a href="user.jsp">用户</a></li>
-			<li><a href="product.jsp">商品</a></li>
+			<li class="current"><a href="product.jsp">商品</a></li>
 			<li><a href="order.jsp">订单</a></li>
 			<li><a href="guestbook.jsp">留言</a></li>
 			<li><a href="news.jsp">新闻</a></li>
@@ -26,7 +28,7 @@
 </div>
 <div id="childNav">
 	<div class="welcome wrap">
-		管理员pillys您好，今天是2012-12-21，欢迎回到管理后台。
+		管理员 [${LoginUser.nickname}] 您好，今天是<%=new SimpleDateFormat("yyyy-MM-dd").format(new Date())%>，欢迎回到管理后台。
 	</div>
 </div>
 <div id="position" class="wrap">
@@ -37,8 +39,8 @@
 		<div class="box">
 			<dl>
 				<dt>用户管理</dt>
-				<dd><a href="user.jsp">用户管理</a></dd>
-			  <dt>商品信息</dt>
+				<dd><em><a href="user-add.html">新增</a></em><a href="user.jsp">用户管理</a></dd>
+				<dt>商品信息</dt>
 				<dd><em><a href="productClass-add.jsp">新增</a></em><a href="productClass.jsp">分类管理</a></dd>
 				<dd><em><a href="product-add.jsp">新增</a></em><a href="product.jsp">商品管理</a></dd>
 				<dt>订单管理</dt>
@@ -51,27 +53,33 @@
 		</div>
 	</div>
 	<div class="main">
-		<h2>提示信息</h2>
+		<h2>修改分类</h2>
 		<div class="manage">
-			<div class="shadow">
-				<em class="corner lb"></em>
-				<em class="corner rt"></em>
-				<div class="box">
-					<div class="msg">
-						<p>恭喜：操作成功！</p>
-						<p>正在进入首页...</p>
-						<script type="text/javascript">
-							setTimeout("location.href='index.jsp'", 1000);
-						</script>
-					</div>
-				</div>
-			</div>
+			<form action="/manager/productClass/modify" method="post">
+				<table class="form">
+					<tr>
+						<td class="field">分类名称：</td>
+						<td>${updateProductClass.totalListName}</td>
+					</tr>
+					<tr>
+						<td class="field">更新名称：</td>
+						<td>
+							<input type="text" class="text" name="totalListName"/>
+							<input type="hidden" name="id" value="${updateProductClass.id}">
+						</td>
+					</tr>
+					<tr>
+						<td></td>
+						<td><label class="ui-blue"><input type="submit" name="submit" value="更新" /></label></td>
+					</tr>
+				</table>
+			</form>
 		</div>
 	</div>
 	<div class="clear"></div>
 </div>
 <div id="footer">
-	Copyright &copy; 2013 北大青鸟 All Rights Reserved. 京ICP证1000001号
+	Copyright &copy; 2010 北大青鸟 All Rights Reserved. 京ICP证1000001号
 </div>
 </body>
 </html>

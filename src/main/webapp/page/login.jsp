@@ -12,7 +12,7 @@
 <body>
 <div id="header" class="wrap">
 	<div id="logo"><img src="/resources/images/logo.gif" /></div>
-	<div class="help"><a href="shopping.html" class="shopping">购物车X件</a><a href="login.jsp">登录</a><a href="register.jsp">注册</a><a href="guestbook.html">留言</a><a href="manage/index.jsp">后台管理</a></div>
+	<div class="help"><a href="shopping.jsp" class="shopping">购物车X件</a><a href="login.jsp">登录</a><a href="register.jsp">注册</a><a href="guestbook.jsp">留言</a><a href="manage/index.jsp">后台管理</a></div>
 	<div class="navbar">
 		<ul class="clearfix">
 			<li class="current"><a href="#">首页</a></li>

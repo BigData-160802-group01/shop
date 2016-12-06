@@ -15,7 +15,7 @@
 <div id="header" class="wrap">
     <div id="logo"><img src="/resources/images/logo.gif"/></div>
     <div class="help">
-        <a href="shopping.html" class="shopping">购物车X件</a>
+        <a href="shopping.jsp" class="shopping">购物车X件</a>
         <c:if test="${!empty LoginUser}">
             ${LoginUser.name}
             <a class="button" id="logout" href="/user/logout">注销</a>
@@ -24,7 +24,7 @@
             <a href="/page/login.jsp">登录</a>
             <a href="/user/register">注册</a>
         </c:if>
-        <a href="guestbook.html">留言</a>
+        <a href="guestbook.jsp">留言</a>
         <a href="manage/index.jsp">后台管理</a>
     </div>
     <div class="navbar">

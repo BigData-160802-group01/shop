@@ -1,3 +1,5 @@
+<%@ page import="java.util.Date" %>
+<%@ page import="java.text.SimpleDateFormat" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page isELIgnored="false" %>
@@ -15,18 +17,18 @@
 	<div class="help"><a href="/page/index.jsp">返回前台页面</a></div>
 	<div class="navbar">
 		<ul class="clearfix">
-			<li><a href="index.jsp">首页</a></li>
+			<li class="current"><a href="index.jsp">首页</a></li>
 			<li><a href="user.jsp">用户</a></li>
 			<li><a href="product.jsp">商品</a></li>
 			<li><a href="order.jsp">订单</a></li>
 			<li><a href="guestbook.jsp">留言</a></li>
-			<li class="current"><a href="news.jsp">新闻</a></li>
+			<li><a href="news.jsp">新闻</a></li>
 		</ul>
 	</div>
 </div>
 <div id="childNav">
 	<div class="welcome wrap">
-		管理员pillys您好，今天是2012-12-21，欢迎回到管理后台。
+		管理员 [${LoginUser.nickname}] 您好，今天是<%=new SimpleDateFormat("yyyy-MM-dd").format(new Date())%>，欢迎回到管理后台。
 	</div>
 </div>
 <div id="position" class="wrap">
@@ -51,39 +53,24 @@
 		</div>
 	</div>
 	<div class="main">
-		<h2>新闻管理</h2>
+		<h2>提示信息</h2>
 		<div class="manage">
-			<table class="list">
-				<tr>
-					<th>ID</th>
-					<th>新闻标题</th>
-					<th>操作</th>
-				</tr>
-				<tr>
-					<td class="first w4 c">1</td>
-					<td>高老庄地震了</td>
-					<td class="w1 c"><a href="news-modify.jsp">修改</a> <a class="manageDel" href="javascript:void(0)">删除</a></td>
-				</tr>
-				<tr>
-					<td class="first w4 c">1</td>
-					<td>高老庄地震了</td>
-					<td class="w1 c"><a href="news-modify.jsp">修改</a> <a class="manageDel" href="javascript:void(0)">删除</a></td>
-				</tr>
-			</table>
+			<div class="shadow">
+				<em class="corner lb"></em>
+				<em class="corner rt"></em>
+				<div class="box">
+					<div class="msg">
+						<p>恭喜：操作成功！</p>
+						<p>正在进入首页...</p>
+						<script type="text/javascript">
+							setTimeout("location.href='/user/manager'", 1000);
+						</script>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 	<div class="clear"></div>
-    <div class="pager">
-				<ul class="clearfix">
-					<li><a >首页</a></li>
-					<li>...</li>
-					<li><a >4</a></li>
-					<li class="current">5</li>
-                    <li><a >6</a></li>
-                    <li>...</li>
-					<li><a >尾页</a></li>
-				</ul>
-			</div>
 </div>
 <div id="footer">
 	Copyright &copy; 2013 北大青鸟 All Rights Reserved. 京ICP证1000001号

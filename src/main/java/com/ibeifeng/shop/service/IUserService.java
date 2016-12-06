@@ -18,4 +18,5 @@ public interface IUserService {
     String searchusername(String username);
     String judgeStatus(HttpSession session);
     Pager<User> pageList();
+    void delete(User user);
 }

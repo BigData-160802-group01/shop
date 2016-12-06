@@ -35,17 +35,17 @@ public class UserController {
         if (status.equals("passworderror")){
             errorMessage="密码错误！请重新输入!";
             model.addAttribute("errorMessage",errorMessage);
-            return "login";
+            return "page/login";
         }else if (status.equals("usernameerror")){
             errorMessage="用户名错误，请确认后重新输入";
             model.addAttribute("errorMessage",errorMessage);
-            return "login";
+            return "page/login";
         }else if (status.equals("isExist")){
             errorMessage="该用户已登陆，如非本人，请修改密码";
             model.addAttribute("errorMessage",errorMessage);
-            return "login";
+            return "page/login";
         }
-        return "index";
+        return "page/index";
     }
 
     @RequestMapping("/logout")
@@ -55,12 +55,12 @@ public class UserController {
         loginUserMap.remove(user.getName());
         session.getServletContext().setAttribute("LoginUser",loginUserMap);
         session.removeAttribute("LoginUser");
-        return "index";
+        return "page/index";
     }
     @RequestMapping(value = "/register",method = RequestMethod.GET)
     public String beforereg(Model model){
         model.addAttribute(new User());
-        return "register";
+        return "page/register";
     }
     @RequestMapping(value = "/register",method = RequestMethod.POST)
     public String register(@DateTimeFormat(pattern="yyyy-MM-dd")Date birthday, User user, BindingResult result, HttpSession session){
@@ -69,7 +69,7 @@ public class UserController {
         shopService.add(shop);
         user.setShop(shop);
         userService.add(user,session);
-        return "reg-result";
+        return "page/reg-result";
     }
     /**
      *
@@ -90,35 +90,35 @@ public class UserController {
     public String judgeManage(HttpSession session){
         String result=userService.judgeStatus(session);
         if (result.equals("OK")){
-            return "manage/index";
+            return "WEB-INF/manage/index";
         }else {
-            return "index";
+            return "page/index";
         }
     }
 
-    /**
-     * 显示所有用户信息
-     * @param request
-     * @return
-     */
-    @RequestMapping(value = "/manager/user/list")
-    public String manageUser(HttpServletRequest request){
-        Pager<User> list=userService.pageList();
-        request.setAttribute("userlist",list);
-        return "manage/user";
-    }
-    @GetMapping(value = "/manager/user/modify/{id}")
-    public String modifyUser(@PathVariable int id,Model model){
-        User modifyUser=userService.load(id);
-        model.addAttribute(modifyUser);
-        return "manage/user-modify";
-    }
-    @PostMapping(value = "/manager/user/modify")
-    public String modifyUser(@DateTimeFormat(pattern="yyyy-MM-dd")Date birthday,User user,BindingResult result){
-        user.setBirthday(birthday);
-        userService.update(user);
-        return "manage/manage-result";
-    }
+//    /**
+//     * 显示所有用户信息
+//     * @param request
+//     * @return
+//     */
+//    @RequestMapping(value = "/manager/user/list",method = RequestMethod.GET)
+//    public String manageUser(HttpServletRequest request){
+//        Pager<User> list=userService.pageList();
+//        request.setAttribute("userlist",list);
+//        return "WEB-INF/manage/user";
+//    }
+//    @GetMapping(value = "/manager/user/modify/{id}")
+//    public String modifyUser(@PathVariable int id,Model model){
+//        User modifyUser=userService.load(id);
+//        model.addAttribute(modifyUser);
+//        return "WEB-INF/manage/user-modify";
+//    }
+//    @PostMapping(value = "/manager/user/modify")
+//    public String modifyUser(@DateTimeFormat(pattern="yyyy-MM-dd")Date birthday,User user,BindingResult result){
+//        user.setBirthday(birthday);
+//        userService.update(user);
+//        return "WEB-INF/manage/manage-result";
+//    }
 
     @Resource
     public void setUserService(IUserService userService) {

@@ -10,32 +10,18 @@
 <script type="text/javascript" src="/resources/scripts/function.js"></script>
 </head>
 <body>
-<%--<div id="welcomeImage">--%>
-    <%--<img width="100%" height="150" src="/resources/images/banner.jpg" alt="welcome">--%>
-<%--</div>--%>
 <div id="header" class="wrap">
 	<div id="logo"><img src="/resources/images/logo.gif" /></div>
-	<div class="help">
-		<a href="shopping.jsp" id="shoppingBag" class="shopping">购物车X件</a>
-		<c:if test="${!empty LoginUser}">
-			${LoginUser.name}
-			<a class="button" id="logout" href="/user/logout">注销</a>
-		</c:if>
-		<c:if test="${empty LoginUser}">
-			<a href="/page/login.jsp">登录</a>
-			<a href="/user/register">注册</a>
-		</c:if>
-		<a href="guestbook.jsp">留言</a>
-		<a href="/user/manager">后台管理</a></div>
-		<div class="navbar">
-			<ul class="clearfix">
-				<li class="current"><a href="#">首页</a></li>
-				<li><a href="#">图书</a></li>
-				<li><a href="#">百货</a></li>
-				<li><a href="#">品牌</a></li>
-				<li><a href="#">促销</a></li>
-			</ul>
-		</div>
+	<div class="help"><a href="shopping.jsp" class="shopping">购物车X件</a><a href="login.jsp">登录</a><a href="register.jsp">注册</a><a href="guestbook.jsp">留言</a><a href="manage/index.jsp">后台管理</a></div>
+	<div class="navbar">
+		<ul class="clearfix">
+			<li class="current"><a href="#">首页</a></li>
+			<li><a href="#">图书</a></li>
+			<li><a href="#">百货</a></li>
+			<li><a href="#">品牌</a></li>
+			<li><a href="#">促销</a></li>
+		</ul>
+	</div>
 </div>
 <div id="childNav">
 	<div class="wrap">
@@ -58,6 +44,9 @@
 			<li class="last"><a href="#">Investor Relations</a></li>
 		</ul>
 	</div>
+</div>
+<div id="position" class="wrap">
+	您现在的位置：<a href="index.jsp">易买网</a> &gt; <a href="product-list.jsp">图书音像</a> &gt; 图书
 </div>
 <div id="main" class="wrap">
 	<div class="lefter">
@@ -93,19 +82,15 @@
 				<dt>&nbsp;</dt>
 				<dd>&nbsp;</dd>
 		  </dl>
-	  </div>
+			<script type="text/javascript">
+				document.write("Cookie中记录的购物车商品ID："+ getCookie("product") + "，可以在动态页面中进行读取");
+			</script>
+		</div>
 	</div>
 	<div class="main">
-		<div class="price-off">
-            <div class="slideBox">
-                <ul id="slideBox">
-                    <li><img src="/resources/images/product/banner_1.jpg"/></li>
-                    <li><img src="/resources/images/product/banner_2.jpg"/></li>
-                    <li><img src="/resources/images/product/banner_3.jpg"/></li>
-                    <li><img src="/resources/images/product/banner_4.jpg"/></li>
-                </ul>
-            </div>
-			<h2>商品列表</h2>
+		<div class="product-list">
+			<h2>全部商品</h2>			
+			<div class="clear"></div>
 			<ul class="product clearfix">
 				<li>
 					<dl>
@@ -151,7 +136,7 @@
 				</li>
 				<li>
 					<dl>
-						<dt><a href="product-view.jsp" target="_self"><img src="/resources/images/product/10.jpg" /></a></dt>
+						<dt><a href="product-view.jsp" target="_self"><img src="/resources/images/product/7.jpg" /></a></dt>
 						<dd class="title"><a href="product-view.jsp" target="_self">利仁2018M福满堂电饼铛 好用实惠</a></dd>
 						<dd class="price">￥268.0</dd>
 					</dl>
@@ -163,31 +148,53 @@
 						<dd class="price">￥198.0</dd>
 					</dl>
 				</li>
+				<li>
+					<dl>
+						<dt><a href="product-view.jsp" target="_self"><img src="/resources/images/product/9.jpg" /></a></dt>
+						<dd class="title"><a href="product-view.jsp" target="_self">爱国者MP4 全屏触摸多格式播放 4G</a></dd>
+						<dd class="price">￥289.0</dd>
+					</dl>
+				</li>
+				<li>
+					<dl>
+						<dt><a href="product-view.jsp" target="_self"><img src="/resources/images/product/10.jpg" /></a></dt>
+						<dd class="title"><a href="product-view.jsp" target="_self">多美滋金装金盾3阶段幼儿配方奶粉</a></dd>
+						<dd class="price">￥186.0</dd>
+					</dl>
+				</li>
+				<li>
+					<dl>
+						<dt><a href="product-view.jsp" target="_self"><img src="/resources/images/product/1.jpg" /></a></dt>
+						<dd class="title"><a href="product-view.jsp" target="_self">法国德菲丝松露精品巧克力500g/盒</a></dd>
+						<dd class="price">￥108.0</dd>
+					</dl>
+				</li>
+				<li>
+					<dl>
+						<dt><a href="product-view.jsp" target="_self"><img src="/resources/images/product/2.jpg" /></a></dt>
+						<dd class="title"><a href="product-view.jsp" target="_self">乐扣普通型保鲜盒圣诞7件套</a></dd>
+						<dd class="price">￥69.90</dd>
+					</dl>
+				</li>
 			</ul>
-		</div>
-		<div class="side">			
-			<div class="spacer"></div>
-			<div class="news-list">
-				<h4>新闻动态</h4>
-				<ul>
-					<li><a href="news-view.jsp" target="_self">抢钱啦</a></li>
-					<li><a href="news-view.jsp" target="_self">抢钱啦</a></li>
-					<li><a href="news-view.jsp" target="_self">抢钱啦</a></li>
-					<li><a href="news-view.jsp" target="_self">抢钱啦</a></li>
-					<li><a href="news-view.jsp" target="_self">抢钱啦</a></li>
-					<li><a href="news-view.jsp" target="_self">抢钱啦</a></li>
-					<li><a href="news-view.jsp" target="_self">抢钱啦</a></li>
-                    <li><a href="news-view.jsp" target="_self">抢钱啦</a></li>
-					<li><a href="news-view.jsp" target="_self">抢钱啦</a></li>
-					<li><a href="news-view.jsp" target="_self">抢钱啦</a></li>
+			<div class="clear"></div>
+			<div class="pager">
+				<ul class="clearfix">
+					<li><a >首页</a></li>
+					<li>...</li>
+					<li><a >4</a></li>
+					<li class="current">5</li>
+                    <li><a >6</a></li>
+                    <li>...</li>
+					<li><a >尾页</a></li>
 				</ul>
 			</div>
 		</div>
-		<div class="spacer clear"></div>
-    </div>
+	</div>
+	<div class="clear"></div>
 </div>
 <div id="footer">
-	Copyright &copy; 2013 北大青鸟 All Rights Reserved. 京ICP证1000001号
+	Copyright &copy; 2010 北大青鸟 All Rights Reserved. 京ICP证1000001号
 </div>
 </body>
 </html>

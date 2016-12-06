@@ -1,5 +1,8 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+﻿<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page isELIgnored="false" %>
 <html xmlns="http://www.w3.org/1999/xhtml">
+<head>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>易买网 - 首页</title>
@@ -10,7 +13,7 @@
 <body>
 <div id="header" class="wrap">
 	<div id="logo"><img src="/resources/images/logo.gif" /></div>
-	<div class="help"><a href="shopping.html" class="shopping">购物车X件</a><a href="login.jsp">登录</a><a href="register.jsp">注册</a><a href="guestbook.html">留言</a><a href="manage/index.jsp">后台管理</a></div>
+	<div class="help"><a href="shopping.jsp" class="shopping">购物车X件</a><a href="login.jsp">登录</a><a href="register.jsp">注册</a><a href="guestbook.jsp">留言</a><a href="manage/index.jsp">后台管理</a></div>
 	<div class="navbar">
 		<ul class="clearfix">
 			<li class="current"><a href="#">首页</a></li>
@@ -44,7 +47,7 @@
 	</div>
 </div>
 <div id="position" class="wrap">
-	您现在的位置：<a href="index.jsp">易买网</a> &gt; <a href="product-list.html">图书音像</a> &gt; 图书
+	您现在的位置：<a href="index.jsp">易买网</a> &gt; <a href="product-list.jsp">图书音像</a> &gt; 图书
 </div>
 <div id="main" class="wrap">
 	<div class="lefter">
@@ -52,23 +55,23 @@
 			<h2>商品分类</h2>
 			<dl>
 				<dt>图书音像</dt>
-				<dd><a href="product-list.html">图书</a></dd>
-				<dd><a href="product-list.html">音乐</a></dd>
+				<dd><a href="product-list.jsp">图书</a></dd>
+				<dd><a href="product-list.jsp">音乐</a></dd>
 				<dt>百货</dt>
-				<dd><a href="product-list.html">运动健康</a></dd>
-				<dd><a href="product-list.html">服装</a></dd>
-				<dd><a href="product-list.html">家居</a></dd>
-				<dd><a href="product-list.html">美妆</a></dd>
-				<dd><a href="product-list.html">母婴</a></dd>
-				<dd><a href="product-list.html">食品</a></dd>
-				<dd><a href="product-list.html">手机数码</a></dd>
-				<dd><a href="product-list.html">家具首饰</a></dd>
-				<dd><a href="product-list.html">手表饰品</a></dd>
-				<dd><a href="product-list.html">鞋包</a></dd>
-				<dd><a href="product-list.html">家电</a></dd>
-				<dd><a href="product-list.html">电脑办公</a></dd>
-				<dd><a href="product-list.html">玩具文具</a></dd>
-				<dd><a href="product-list.html">汽车用品</a></dd>
+				<dd><a href="product-list.jsp">运动健康</a></dd>
+				<dd><a href="product-list.jsp">服装</a></dd>
+				<dd><a href="product-list.jsp">家居</a></dd>
+				<dd><a href="product-list.jsp">美妆</a></dd>
+				<dd><a href="product-list.jsp">母婴</a></dd>
+				<dd><a href="product-list.jsp">食品</a></dd>
+				<dd><a href="product-list.jsp">手机数码</a></dd>
+				<dd><a href="product-list.jsp">家具首饰</a></dd>
+				<dd><a href="product-list.jsp">手表饰品</a></dd>
+				<dd><a href="product-list.jsp">鞋包</a></dd>
+				<dd><a href="product-list.jsp">家电</a></dd>
+				<dd><a href="product-list.jsp">电脑办公</a></dd>
+				<dd><a href="product-list.jsp">玩具文具</a></dd>
+				<dd><a href="product-list.jsp">汽车用品</a></dd>
 			</dl>
 		</div>
 	</div>
@@ -79,7 +82,7 @@
 			<div class="buy">
 				商城价：<span class="price">￥99.00</span><br />
 				库　存：有货
-			  <div class="button"><input type="button" name="button" value="" onclick="location.href = 'address.html'" /><a href="shopping.html">放入购物车</a></div>
+			  <div class="button"><input type="button" name="button" value="" onclick="location.href = 'address.jsp'" /><a href="shopping.jsp">放入购物车</a></div>
 			</div>
 			<div class="clear"></div>
 		</div>

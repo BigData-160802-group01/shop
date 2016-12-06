@@ -1,5 +1,8 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page isELIgnored="false" %>
 <html xmlns="http://www.w3.org/1999/xhtml">
+<head>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>易买网 - 首页</title>
@@ -10,7 +13,7 @@
 <body>
 <div id="header" class="wrap">
 	<div id="logo"><img src="/resources/images/logo.gif" /></div>
-	<div class="help"><a href="shopping.html" class="shopping">购物车X件</a><a href="login.jsp">登录</a><a href="register.jsp">注册</a><a href="guestbook.html">留言</a><a href="manage/index.jsp">后台管理</a></div>
+	<div class="help"><a href="shopping.jsp" class="shopping">购物车X件</a><a href="login.jsp">登录</a><a href="register.jsp">注册</a><a href="guestbook.jsp">留言</a><a href="manage/index.jsp">后台管理</a></div>
 	<div class="navbar">
 		<ul class="clearfix">
 			<li class="current"><a href="#">首页</a></li>
@@ -48,7 +51,7 @@
 </div>
 <div class="wrap">
 	<div id="shopping">
-		<form action="address.html">
+		<form action="address.jsp">
 			<table>
 				<tr>
 					<th>商品名称</th>
@@ -57,7 +60,7 @@
 					<th>操作</th>
 				</tr>
 				<tr id="product_id_0">
-					<td class="thumb"><img src="/resources/images/product/0.jpg" /><a href="product-view.html">铁三角 Audio-Technica ATH-EQ300M-SV 银色 挂耳式耳机</a></td>
+					<td class="thumb"><img src="/resources/images/product/0.jpg" /><a href="product-view.jsp">铁三角 Audio-Technica ATH-EQ300M-SV 银色 挂耳式耳机</a></td>
 					<td class="price" id="price_id_0">
 						<span>￥99.00</span>
 						<input type="hidden" value="99" />
@@ -70,7 +73,7 @@
 					<td class="delete"><a href="javascript:void(0)">删除</a></td>
 				</tr>
                 <tr id="product_id_1">
-                    <td class="thumb"><img src="/resources/images/product/0.jpg" /><a href="product-view.html">铁三角 Audio-Technica ATH-EQ300M-SV 银色 挂耳式耳机</a></td>
+                    <td class="thumb"><img src="/resources/images/product/0.jpg" /><a href="product-view.jsp">铁三角 Audio-Technica ATH-EQ300M-SV 银色 挂耳式耳机</a></td>
                     <td class="price" id="price_id_1">
                         <span>￥99.00</span>
                         <input type="hidden" value="99" />

@@ -398,7 +398,7 @@ $(function(){
     //注销
     // $("#logout").click(function(){
     //     if(confirm("购物车中尚有未结算的商品，是否结账？")) {
-    //         location.href="shopping.html";
+    //         location.href="shopping.jsp";
     //     }else{
     //         location.href="/page/index.jsp";
     //         return false;

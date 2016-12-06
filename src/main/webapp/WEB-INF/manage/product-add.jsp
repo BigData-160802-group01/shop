@@ -1,3 +1,5 @@
+<%@ page import="java.text.SimpleDateFormat" %>
+<%@ page import="java.util.Date" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page isELIgnored="false" %>
@@ -26,7 +28,7 @@
 </div>
 <div id="childNav">
 	<div class="welcome wrap">
-		管理员pillys您好，今天是2012-12-21，欢迎回到管理后台。
+		管理员 [${LoginUser.nickname}] 您好，今天是<%=new SimpleDateFormat("yyyy-MM-dd").format(new Date())%>，欢迎回到管理后台。
 	</div>
 </div>
 <div id="position" class="wrap">
@@ -51,39 +53,53 @@
 		</div>
 	</div>
 	<div class="main">
-		<h2>商品管理</h2>
+		<h2>添加商品</h2>
 		<div class="manage">
-			<table class="list">
-				<tr>
-					<th>编号</th>
-					<th>商品名称</th>
-					<th>操作</th>
-				</tr>
-				<tr>
-					<td class="first w4 c">1</td>
-					<td class="thumb"><img src="/resources/images/product/0_tiny.gif" /><a href="/resources/product-view.html" target="_self">铁三角 Audio-Technica ATH-EQ300M-SV 银色 挂耳式耳机</a></td>
-					<td class="w1 c"><a href="product-modify.jsp">修改</a> <a class="manageDel" href="javascript:void(0)">删除</a></td>
-				</tr>
-				<tr>
-					<td class="first w4 c">1</td>
-					<td class="thumb"><img src="/resources/images/product/0_tiny.gif" /><a href="/resources/product-view.html" target="_self">铁三角 Audio-Technica ATH-EQ300M-SV 银色 挂耳式耳机</a></td>
-					<td class="w1 c"><a href="product-modify.jsp">修改</a> <a class="manageDel" href="javascript:void(0)">删除</a></td>
-				</tr>
-			</table>
+			<form id="productAdd" action="manage-result.jsp">
+				<table class="form">
+					<tr>
+						<td class="field">商品名称(*)：</td>
+						<td><input type="text" class="text" name="productName" value="铁三角 Audio-Technica ATH-EQ300M-SV 银色 挂耳式耳机" /><span></span></td>
+					</tr>
+                    <tr>
+						<td class="field">描述：</td>
+						<td><input type="text" class="text" name="productDetail" /></td>
+					</tr>
+					<tr>
+						<td class="field">所属分类：</td>
+						<td>
+							<select name="parentId">
+								<option value="1">电器</option>
+								<option value="3">├ 电器</option>
+								<option value="3">└ 电器</option>
+								<option value="2">衣服</option>
+								<option value="3">├ 电器</option>
+								<option value="3">└ 电器</option>
+							</select>
+						</td>
+					</tr>					
+					<tr>
+						<td class="field">商品价格(*)：</td>
+						<td><input type="text" class="text tiny" name="productPrice" /> 元<span></span></td>
+					</tr>
+					
+					<tr>
+						<td class="field">库存(*)：</td>
+						<td><input type="text" class="text tiny" name="productNumber" /><span></span></td>
+					</tr>
+					<tr>
+						<td class="field">商品图片(*)：</td>
+						<td><input type="file" class="text" name="photo" /><span></span></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td><label class="ui-blue"><input type="submit" name="submit" value="确定" /></label></td>
+					</tr>
+				</table>
+			</form>
 		</div>
 	</div>
 	<div class="clear"></div>
-    <div class="pager">
-				<ul class="clearfix">
-					<li><a >首页</a></li>
-					<li>...</li>
-					<li><a >4</a></li>
-					<li class="current">5</li>
-                    <li><a >6</a></li>
-                    <li>...</li>
-					<li><a >尾页</a></li>
-				</ul>
-			</div>
 </div>
 <div id="footer">
 	Copyright &copy; 2013 北大青鸟 All Rights Reserved. 京ICP证1000001号
