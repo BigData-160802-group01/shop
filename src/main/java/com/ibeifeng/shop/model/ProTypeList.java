@@ -12,7 +12,7 @@ import java.util.Set;
 @Table(name = "t_protypelist")
 public class ProTypeList {
     private int id;
-        private String totalListName;
+            private String totalListName;
     private Set< ProType> type;
     @Id
     @GeneratedValue(generator = "increment")

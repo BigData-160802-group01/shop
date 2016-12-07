@@ -10,6 +10,25 @@
 <link type="text/css" rel="stylesheet" href="/resources/css/style.css" />
 <script type="text/javascript" src="/resources/scripts/jquery-1.8.3.min.js"></script>
 <script type="text/javascript" src="/resources/scripts/function.js"></script>
+<script type="text/javascript">
+		$(function () {
+			$("#dis").change(function () {
+				var a=dis.value;
+				$.ajax({
+					url:"/manager/product/modify/search",
+					type:"post",
+					data:{name:a},
+					success:function (data) {
+						$("#stre").empty();
+						for (var i=0;i<data.length;i++){
+							var b= "<option value="+data[i]+">"+data[i]+"</option>";
+							$("#stre").append(b);
+						}
+					}
+				})
+			})
+		})
+	</script>
 </head>
 <body>
 <div id="header" class="wrap">
@@ -55,37 +74,56 @@
 	<div class="main">
 		<h2>修改商品</h2>
 		<div class="manage">
-			<form action="manage-result.jsp">
+			<form action="/manager/product/modify" method="post" enctype="multipart/form-data">
 				<table class="form">
 					<tr>
 						<td class="field">商品名称(*)：</td>
-						<td><input type="text" class="text" name="productName" value="铁三角 Audio-Technica ATH-EQ300M-SV 银色 挂耳式耳机" /></td>
+						<td><input type="text" class="text" name="proname" value="${updateProduct.proname}" /></td>
 					</tr>
                     <tr>
 						<td class="field">描述：</td>
-						<td><input type="text" class="text" name="productName" /></td>
+						<td><input type="text" class="text" name="description" value="${updateProduct.description}" /></td>
 					</tr>
 					<tr>
 						<td class="field">所属分类：</td>
 						<td>
-							<select name="parentId">
-								<option value="1">电器</option>
-								<option value="3">├ 电器</option>
-								<option value="3">└ 电器</option>
-								<option value="2">衣服</option>
-								<option value="3">├ 电器</option>
-								<option value="3">└ 电器</option>
+							<div style="width:100px; text-align:center; font-size:14px;display: inline-block">一级分类</div>
+							<select name="proType.proTypeList.totalListName" id="dis">
+								<option value="0" selected="selected">请选择</option>
+								<c:forEach items="${protypelist}" var="pr">
+									<c:if test="${pr.totalListName==updateProduct.proType.proTypeList.totalListName}">
+										<option selected="selected" value="${pr.totalListName}">${pr.totalListName}</option>
+									</c:if>
+									<c:if test="${pr.totalListName!=updateProduct.proType.proTypeList.totalListName}">
+										<option value="${pr.totalListName}">${pr.totalListName}</option>
+									</c:if>
+								</c:forEach>
+							</select>
+							<div style="width:100px; text-align:center; font-size:14px;display: inline-block">二级分类</div>
+							<select name="proType.typeName" id="stre">
+								<option value="0" selected="selected">请选择</option>
+								<c:forEach items="${updateProduct.proType.proTypeList.type}" var="tylist">
+									<c:if test="${tylist.typeName==updateProduct.proType.typeName}">
+										<option selected="selected" value="${tylist.typeName}">${tylist.typeName}</option>
+									</c:if>
+									<c:if test="${tylist.typeName!=updateProduct.proType.typeName}">
+										<option value="${tylist.typeName}">${tylist.typeName}</option>
+									</c:if>
+								</c:forEach>
 							</select>
 						</td>
 					</tr>					
 					<tr>
 						<td class="field">商品价格(*)：</td>
-						<td><input type="text" class="text tiny" name="productPrice" /> 元</td>
+						<td><input type="text" class="text tiny" name="price" value="${updateProduct.price}" /></td>
 					</tr>
 					
 					<tr>
 						<td class="field">库存(*)：</td>
-						<td><input type="text" class="text tiny" name="productName" /></td>
+						<td>
+							<input type="text" class="text tiny" name="stock" value="${updateProduct.stock}"/>
+							<input type="hidden" name="id" value="${updateProduct.id}">
+						</td>
 					</tr>
 					<tr>
 						<td class="field">商品图片：</td>

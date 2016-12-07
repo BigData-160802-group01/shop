@@ -28,7 +28,7 @@
 </div>
 <div id="childNav">
 	<div class="welcome wrap">
-		管理员 [${LoginUser.password}] 您好，今天是<%=new SimpleDateFormat("yyyy-MM-dd").format(new Date())%>，欢迎回到管理后台。
+		管理员 [${LoginUser.nickname}] 您好，今天是<%=new SimpleDateFormat("yyyy-MM-dd").format(new Date())%>，欢迎回到管理后台。
 	</div>
 </div>
 <div id="position" class="wrap">
@@ -41,10 +41,10 @@
 				<dt>用户管理</dt>
 				<dd><a href="/manager/user/list">用户管理</a></dd>
 			  <dt>商品信息</dt>
-				<dd><em><a href="/page/manage/productClass-add.jsp">新增</a></em><a href="/manager/productClass/list">分类管理</a></dd>
-				<dd><em><a href="/page/manage/product-add.jsp">新增</a></em><a href="/page/manage/product.jsp">商品管理</a></dd>
+				<dd><em><a href="/manager/productClass/addtype">新增</a></em><a href="/manager/productClass/list">分类管理</a></dd>
+				<dd><em><a href="/manager/product/addproduct">新增</a></em><a href="/manager/product/list">商品管理</a></dd>
 				<dt>订单管理</dt>
-				<dd><a href="/page/manage/order.jsp">订单管理</a></dd>
+				<dd><a href="/manager/order/list">订单管理</a></dd>
 				<dt>留言管理</dt>
 				<dd><a href="/page/manage/guestbook.jsp">留言管理</a></dd>
 				<dt>新闻管理</dt>

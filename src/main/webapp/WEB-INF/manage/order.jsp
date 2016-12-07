@@ -64,48 +64,28 @@
                  <label class="ui-blue"><input type="submit" name="submit" value="查询" /></label>
             </form>
 			<table class="list">
-				<tr>
-					<th colspan="2">单号：1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 时间：2013-3-16</th>					
-					<th colspan="2">状态:收货确认</th>					
-				</tr>
-				<tr>
-					<td class="first w4 c"><img src="/resources/images/product/1.jpg" />画册</td>
-					<td >100</td>
-					<td>1</td>
-					<td class="w1 c" rowspan="2">总计：140</td>					
-				</tr>
-				<tr>
-					<td class="first w4 c"><img src="/resources/images/product/2.jpg" />项链</td>
-					<td >40</td>
-					<td>1</td>			
-				</tr>
-                	<tr>
-					<th colspan="2">单号：2 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;时间：2013-5-16</th>
-					<th colspan="2">状态:待审核<select name="status" >						    
-								<option value="1"  >待审核</option>
-								<option value="2"  >审核通过</option>
-								<option value="3"  >配货</option>
-								<option value="4" >发货</option>
-								<option value="5"  >收货确认</option>
-							
-						</select></th>					
-				</tr>
-				<tr>
-					<td class="first w4 c"><img src="/resources/images/product/3.jpg" />护肤王</td>
-					<td >400</td>
-					<td>1</td>
-					<td class="w1 c">总计：400</td>					
-				</tr>				
+				<c:forEach items="${orderList.datas}" var="ol">
+					<tr>
+						<th colspan="2">单号：${ol.id}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 时间：${ol.createtime}</th>
+						<th colspan="2">状态:<c:if test="${ol.status==1}">未付款</c:if><c:if test="${ol.status==0}">已付款</c:if></th>
+					</tr>
+					<tr>
+						<td class="first w4 c"><img src="${ol.product.pitch}" style="height: 100px;width: 100px" />${ol.product.proname}</td>
+						<td >${ol.product.price}</td>
+						<td>${ol.count}</td>
+						<td class="w1 c" rowspan="2">总计：${ol.product.price*ol.count}</td>
+					</tr>
+				</c:forEach>
 			</table>
 			<div class="pager">
 				<ul class="clearfix">
-					<li><a >首页</a></li>
-					<li>...</li>
-					<li><a >4</a></li>
-					<li class="current">5</li>
-                    <li><a >6</a></li>
-                    <li>...</li>
-					<li><a >尾页</a></li>
+				<li><a href="/manager/order/list?pageIndex=1">首页</a></li>
+					<c:forEach begin="${orderList.pageIndex}" end="${orderList.pageIndex+8}" step="1" var="ab">
+						<c:if test="${ab<=orderList.totalPage}">
+							<li class="current"><a href="/manager/order/list?pageIndex=${ab}">${ab}</a></li>
+						</c:if>
+					</c:forEach>
+				<li><a href="/manager/order/list?pageIndex=${orderList.totalPage}">尾页</a></li>
 				</ul>
 			</div>
 		</div>

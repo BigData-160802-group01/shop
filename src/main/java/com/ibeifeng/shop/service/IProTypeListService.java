@@ -16,4 +16,5 @@ public interface IProTypeListService {
     ProTypeList load(int id);
     Pager<ProTypeList> list();
     ProTypeList loadByName(String name);
+    List<ProTypeList> listnolimit();
 }

@@ -12,26 +12,31 @@ import java.util.Date;
 @Table(name = "t_order")
 public class Order {
     private int id;
+    //定义 订单状态   0 为 未付款  1位 已付款
     private int status;
     private Date createtime;
+    //定义付款方式  0 为现金  1 为 货到付款
+    private double totalPrice;
     private int payType;
+    private int count;
     private User user;
     private Shop shop;
     private Product product;
 
 
-    public Order(int status, Date createtime, int payType) {
+    public Order(int status, Date createtime, int payType,double totalPrice) {
         this.status = status;
         this.createtime = createtime;
         this.payType = payType;
+        this.totalPrice=totalPrice;
     }
 
     public Order() {
 
     }
 
-    public Order(int id, int status, Date createtime, int payType) {
-
+    public Order(int id, int status, Date createtime, int payType,double totalPrice) {
+        this.totalPrice=totalPrice;
         this.id = id;
         this.status = status;
         this.createtime = createtime;
@@ -47,6 +52,22 @@ public class Order {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public double getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(double totalPrice) {
+        this.totalPrice = totalPrice;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
     }
 
     public int getStatus() {

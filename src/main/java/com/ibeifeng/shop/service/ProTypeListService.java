@@ -28,12 +28,10 @@ public class ProTypeListService implements IProTypeListService {
     }
 
     public void delete(int id) {
-        String Hql="from ProType where id=?";
         Set<ProType> set=proTypeListDao.load(id).getType();
         for (ProType p:set) {
             p.setProTypeList(null);
             proTypeDao.update(p);
-            System.out.println("123");
         }
         proTypeListDao.delete(id);
     }
@@ -52,7 +50,10 @@ public class ProTypeListService implements IProTypeListService {
         Object[] par={name};
         return  proTypeListDao.list(hql,par).get(0);
     }
-
+    public List<ProTypeList> listnolimit(){
+        String hql="from ProTypeList";
+        return proTypeListDao.list(hql);
+    }
 
 
 

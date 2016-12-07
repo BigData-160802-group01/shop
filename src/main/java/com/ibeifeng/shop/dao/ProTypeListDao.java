@@ -8,4 +8,7 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public class ProTypeListDao extends BaseDao<ProTypeList> implements IProTypeListDao {
+    public ProTypeList loadbyname(String name){
+        return (ProTypeList) getsession().createQuery("from ProTypeList where totalListName=:name").setParameter("name",name).uniqueResult();
+    }
 }

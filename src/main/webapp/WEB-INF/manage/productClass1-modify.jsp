@@ -1,5 +1,5 @@
-<%@ page import="java.text.SimpleDateFormat" %>
 <%@ page import="java.util.Date" %>
+<%@ page import="java.text.SimpleDateFormat" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page isELIgnored="false" %>
@@ -39,8 +39,8 @@
 		<div class="box">
 			<dl>
 				<dt>用户管理</dt>
-				<dd><a href="user.jsp">用户管理</a></dd>
-			  <dt>商品信息</dt>
+				<dd><em><a href="user-add.html">新增</a></em><a href="user.jsp">用户管理</a></dd>
+				<dt>商品信息</dt>
 				<dd><em><a href="productClass-add.jsp">新增</a></em><a href="productClass.jsp">分类管理</a></dd>
 				<dd><em><a href="product-add.jsp">新增</a></em><a href="product.jsp">商品管理</a></dd>
 				<dt>订单管理</dt>
@@ -53,25 +53,33 @@
 		</div>
 	</div>
 	<div class="main">
-		<h2>添加分类</h2>
+		<h2>修改分类</h2>
 		<div class="manage">
-			<form action="/manager/productClass/addtype" method="post">
+			<form action="/manager/productClass/modify1" method="post">
 				<table class="form">
 					<tr>
-						<td class="field">父分类：</td>
+						<td class="field">分类名称：</td>
+						<td>${updateProType.typeName}</td>
+					</tr>
+					<tr>
+						<td class="field">更新名称：</td>
 						<td>
-							<select name="proTypeList.totalListName">
-								<option value="0" selected="selected">请选择</option>
-								<c:forEach items="${protL}" var="protypelist">
-									<option value="${protypelist.totalListName}">${protypelist.totalListName}</option>
-								</c:forEach>
-							</select>
+							<input type="text" class="text" value="${updateProType.typeName}" name="typeName"/>
+							<input type="hidden" name="id" value="${updateProType.id}">
 						</td>
 					</tr>
 					<tr>
-						<td class="field">分类名称：</td>
-						<td><input type="text" class="text" name="typeName"/></td>
+						<td class="field">上级分类名称：</td>
+						<td>${updateProType.proTypeList.totalListName}</td>
 					</tr>
+					<tr>
+						<td class="field">更新名称：</td>
+						<td>
+							<input type="text" class="text" value="${updateProType.proTypeList.totalListName}" name="proTypeList.totalListName"/>
+							<input type="hidden" value="${updateProType.proTypeList.id}" name="proTypeList.id">
+						</td>
+					</tr>
+
 					<tr>
 						<td></td>
 						<td><label class="ui-blue"><input type="submit" name="submit" value="更新" /></label></td>
@@ -83,7 +91,7 @@
 	<div class="clear"></div>
 </div>
 <div id="footer">
-	Copyright &copy; 2013 北大青鸟 All Rights Reserved. 京ICP证1000001号
+	Copyright &copy; 2010 北大青鸟 All Rights Reserved. 京ICP证1000001号
 </div>
 </body>
 </html>

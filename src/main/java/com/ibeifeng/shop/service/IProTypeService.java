@@ -13,4 +13,5 @@ public interface IProTypeService {
     void delete(int id);
     ProType load(int id);
     Pager<ProType> list();
+    ProType loadByName(String name);
 }

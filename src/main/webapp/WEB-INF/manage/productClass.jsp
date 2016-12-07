@@ -73,8 +73,7 @@
 				<c:if test="${typelist.datas!=null}">
 					<c:forEach var="tl" items="${typelist.datas}" varStatus="stat1">
 						<tr class="nextcolor">
-							<td class="first w4 c">${stat1.index+1}</td>
-							<td>${tl.totalListName}</td>
+							<td class="first w4 c" colspan="2">${tl.totalListName}</td>
 							<td class="w1 c">
 								<a href="/manager/productClass/modify/${tl.totalListName}">修改</a>
 								<a class="manageDel" href="/manager/productClass/delete/${tl.id}">删除</a>
@@ -84,7 +83,10 @@
 							<tr class="nextcolor1">
 								<td class="first w4 c" style="font-size: 10px">&nbsp;&nbsp;&nbsp;(${stat.index+1})</td>
 								<td class="childClass">${type.typeName}</td>
-								<td class="w1 c"><a href="productClass-modify.jsp">修改</a> <a class="manageDel" href="javascript:void(0)">删除</a></td>
+								<td class="w1 c">
+                                    <a href="/manager/productClass/modify1/${type.id}">修改</a>
+                                    <a class="manageDel" href="/manager/productClass/deleteType/${type.id}">删除</a>
+                                </td>
 							</tr>
 						</c:forEach>
 					</c:forEach>

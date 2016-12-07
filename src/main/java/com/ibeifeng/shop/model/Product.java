@@ -11,7 +11,7 @@ import javax.persistence.*;
 @Table(name = "t_product")
 public class Product {
     private int id;
-    private String name;
+    private String proname;
     private String description;
     //定义价格
     private double price;
@@ -19,23 +19,27 @@ public class Product {
     private int stock;
     //定义分类
     private ProType proType;
+//    图片路径
+    private String pitch;
     public Product() {
     }
-    public Product(int id, String name, String description, double price, int stock) {
+    public Product(int id, String name, String description, double price, int stock,String pitch) {
 
         this.id = id;
-        this.name = name;
+        this.proname = name;
         this.description = description;
         this.price = price;
         this.stock = stock;
+        this.pitch=pitch;
     }
 
-    public Product(String name, String description, double price, int stock) {
+    public Product(String name, String description, double price, int stock,String pitch) {
 
-        this.name = name;
+        this.proname = name;
         this.description = description;
         this.price = price;
         this.stock = stock;
+        this.pitch=pitch;
     }
     @Id
     @GeneratedValue(generator = "increment")
@@ -49,12 +53,12 @@ public class Product {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getProname() {
+        return proname;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setProname(String proname) {
+        this.proname = proname;
     }
 
     public String getDescription() {
@@ -71,6 +75,14 @@ public class Product {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public String getPitch() {
+        return pitch;
+    }
+
+    public void setPitch(String pitch) {
+        this.pitch = pitch;
     }
 
     public int getStock() {
