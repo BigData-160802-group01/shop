@@ -11,86 +11,87 @@
 <script type="text/javascript" src="/resources/scripts/function.js"></script>
 </head>
 <body>
-<div id="header" class="wrap">
-	<div id="logo"><img src="/resources/images/logo.gif" /></div>
-	<div class="help"><a href="shopping.jsp" class="shopping">购物车X件</a><a href="login.jsp">登录</a><a href="register.jsp">注册</a><a href="guestbook.jsp">留言</a><a href="manage/index.jsp">后台管理</a></div>
-	<div class="navbar">
-		<ul class="clearfix">
-			<li class="current"><a href="#">首页</a></li>
-			<li><a href="#">图书</a></li>
-			<li><a href="#">百货</a></li>
-			<li><a href="#">品牌</a></li>
-			<li><a href="#">促销</a></li>
-		</ul>
+<div id="Top">
+	<div class="help">
+		<div class="help2">
+			<ul class="h_t_l">
+				<li class="top_gray">您好，欢迎光临易买网！</li>
+				<c:if test="${!empty LoginUser}">
+					<li class="top_red">${LoginUser.name}</li>
+					<li class="top_red"><a class="button" id="logout" href="/user/logout">注销</a></li>
+				</c:if>
+				<c:if test="${empty LoginUser}">
+					<li class="top_red"><a href="#" onclick="change()">登录</a></li>
+					<li class="top_red"><a href="/user/register">注册</a></li>
+				</c:if>
+			</ul>
+		</div>
+		<div class="help1">
+			<a href="/show/shopping" id="shoppingBag" class="shopping">购物车X件</a>
+			<a href="##">我的订单</a>
+			<a href="##">帮助中心</a>
+			<a href="guestbook.html">留言</a>
+			<a href="/user/manager">后台管理</a>
+		</div>
+	</div>
+</div>
+<div id="header" class="wrap" style="margin-bottom: 20px">
+	<div id="logo"><img src="/resources/images/logo.gif" width="160" /></div>
+	<div id="search" style="font-size: 0;float: left;margin-left: 50px;margin-top: 20px">
+
+		<input type="text" name="" class="search_1" readonly="readonly" value="  站内">
+		<input type="text" name="" class="search_2" placeholder="   请输入商品名称">
+		<input type="button" name="" class="search_3" value="搜索">
+	</div>
+	<div class="top1_m" style="float: left;margin-left: 40px;margin-top: 5px">
+		<img src="/resources/images/top_ser.gif" alt="" width="300px" height="50">
 	</div>
 </div>
 <div id="childNav">
 	<div class="wrap">
 		<ul class="clearfix">
-			<li class="first"><a href="#">音乐</a></li>
-			<li><a href="#">影视</a></li>
-			<li><a href="#">少儿</a></li>
-			<li><a href="#">动漫</a></li>
-			<li><a href="#">小说</a></li>
-			<li><a href="#">外语</a></li>
-			<li><a href="#">数码相机</a></li>
-			<li><a href="#">笔记本</a></li>
-			<li><a href="#">羽绒服</a></li>
-			<li><a href="#">秋冬靴</a></li>
-			<li><a href="#">运动鞋</a></li>
-			<li><a href="#">美容护肤</a></li>
-			<li><a href="#">家纺用品</a></li>
-			<li><a href="#">婴幼奶粉</a></li>
-			<li><a href="#">饰品</a></li>
-			<li class="last"><a href="#">Investor Relations</a></li>
+			<c:forEach items="${protypelist}" var="pty">
+				<c:forEach items="${pty.type}" var="ty">
+					<li><a href="/show/showtypePro/${ty.typeName}">${ty.typeName}</a></li>
+				</c:forEach>
+			</c:forEach>
 		</ul>
 	</div>
 </div>
 <div id="position" class="wrap">
-	您现在的位置：<a href="index.jsp">易买网</a> &gt; <a href="product-list.jsp">图书音像</a> &gt; 图书
+	您现在的位置：<a href="/show/index">易买网</a> &gt; <a href="/show/showtypelistPro/${product.proType.proTypeList.totalListName}">${product.proType.proTypeList.totalListName}</a> &gt; ${product.proType.typeName}
 </div>
 <div id="main" class="wrap">
 	<div class="lefter">
 		<div class="box">
 			<h2>商品分类</h2>
 			<dl>
-				<dt>图书音像</dt>
-				<dd><a href="product-list.jsp">图书</a></dd>
-				<dd><a href="product-list.jsp">音乐</a></dd>
-				<dt>百货</dt>
-				<dd><a href="product-list.jsp">运动健康</a></dd>
-				<dd><a href="product-list.jsp">服装</a></dd>
-				<dd><a href="product-list.jsp">家居</a></dd>
-				<dd><a href="product-list.jsp">美妆</a></dd>
-				<dd><a href="product-list.jsp">母婴</a></dd>
-				<dd><a href="product-list.jsp">食品</a></dd>
-				<dd><a href="product-list.jsp">手机数码</a></dd>
-				<dd><a href="product-list.jsp">家具首饰</a></dd>
-				<dd><a href="product-list.jsp">手表饰品</a></dd>
-				<dd><a href="product-list.jsp">鞋包</a></dd>
-				<dd><a href="product-list.jsp">家电</a></dd>
-				<dd><a href="product-list.jsp">电脑办公</a></dd>
-				<dd><a href="product-list.jsp">玩具文具</a></dd>
-				<dd><a href="product-list.jsp">汽车用品</a></dd>
+				<c:forEach items="${protypelist}" var="ptl">
+					<dt>${ptl.totalListName}</dt>
+					<c:forEach items="${ptl.type}" var="pt">
+						<dd><a href="/show/showtypePro/${pt.typeName}">${pt.typeName}</a></dd>
+					</c:forEach>
+				</c:forEach>
 			</dl>
 		</div>
 	</div>
 	<div id="product" class="main">
-		<h1>利仁2018M福满堂电饼铛 好用实惠</h1>
+		<h1>${product.proname}</h1>
 		<div class="infos">
-			<div class="thumb"><img src="/resources/images/product/10.jpg" width="110" height="106" /></div>
+			<div class="thumb"><img src="${product.pitch}" width="250" height="300" /></div>
 			<div class="buy">
-				商城价：<span class="price">￥99.00</span><br />
-				库　存：有货
-			  <div class="button"><input type="button" name="button" value="" onclick="location.href = 'address.jsp'" /><a href="shopping.jsp">放入购物车</a></div>
+				商城价：<span class="price">￥${product.price}</span><br />
+				库　存：${product.stock} 件
+			  <div class="button">
+				  <input type="button" name="button" value="" onclick="location.href = '/show/payproduct/${product.id}'" />
+				  <a href="/show/joinshopping/${product.id}">放入购物车</a></div>
 			</div>
 			<div class="clear"></div>
 		</div>
 		<div class="introduce">
 			<h2><strong>商品详情</strong></h2>
 			<div class="text">
-				利仁2018M福满堂电饼铛 好用实惠<br />
-				......<br />
+				${product.description}<br />
 			</div>
 		</div>
 	</div>

@@ -10,43 +10,55 @@
 <script type="text/javascript" src="/resources/scripts/function.js"></script>
 </head>
 <body>
-<div id="header" class="wrap">
-	<div id="logo"><img src="/resources/images/logo.gif" /></div>
-	<div class="help"><a href="shopping.jsp" class="shopping">购物车X件</a><a href="login.jsp">登录</a><a href="register.jsp">注册</a><a href="guestbook.jsp">留言</a><a href="manage/index.jsp">后台管理</a></div>
-	<div class="navbar">
-		<ul class="clearfix">
-			<li class="current"><a href="#">首页</a></li>
-			<li><a href="#">图书</a></li>
-			<li><a href="#">百货</a></li>
-			<li><a href="#">品牌</a></li>
-			<li><a href="#">促销</a></li>
-		</ul>
+<div id="Top">
+	<div class="help">
+		<div class="help2">
+			<ul class="h_t_l">
+				<li class="top_gray">您好，欢迎光临易买网！</li>
+				<c:if test="${!empty LoginUser}">
+					<li class="top_red">${LoginUser.name}</li>
+					<li class="top_red"><a class="button" id="logout" href="/user/logout">注销</a></li>
+				</c:if>
+				<c:if test="${empty LoginUser}">
+					<li class="top_red"><a href="#" onclick="change()">登录</a></li>
+					<li class="top_red"><a href="/user/register">注册</a></li>
+				</c:if>
+			</ul>
+		</div>
+		<div class="help1">
+			<a href="/show/shopping" id="shoppingBag" class="shopping">购物车X件</a>
+			<a href="##">我的订单</a>
+			<a href="##">帮助中心</a>
+			<a href="guestbook.html">留言</a>
+			<a href="/user/manager">后台管理</a>
+		</div>
+	</div>
+</div>
+<div id="header" class="wrap" style="margin-bottom: 20px">
+	<div id="logo"><img src="/resources/images/logo.gif" width="160" /></div>
+	<div id="search" style="font-size: 0;float: left;margin-left: 50px;margin-top: 20px">
+
+		<input type="text" name="" class="search_1" readonly="readonly" value="  站内">
+		<input type="text" name="" class="search_2" placeholder="   请输入商品名称">
+		<input type="button" name="" class="search_3" value="搜索">
+	</div>
+	<div class="top1_m" style="float: left;margin-left: 40px;margin-top: 5px">
+		<img src="/resources/images/top_ser.gif" alt="" width="300px" height="50">
 	</div>
 </div>
 <div id="childNav">
 	<div class="wrap">
 		<ul class="clearfix">
-			<li class="first"><a href="#">音乐</a></li>
-			<li><a href="#">影视</a></li>
-			<li><a href="#">少儿</a></li>
-			<li><a href="#">动漫</a></li>
-			<li><a href="#">小说</a></li>
-			<li><a href="#">外语</a></li>
-			<li><a href="#">数码相机</a></li>
-			<li><a href="#">笔记本</a></li>
-			<li><a href="#">羽绒服</a></li>
-			<li><a href="#">秋冬靴</a></li>
-			<li><a href="#">运动鞋</a></li>
-			<li><a href="#">美容护肤</a></li>
-			<li><a href="#">家纺用品</a></li>
-			<li><a href="#">婴幼奶粉</a></li>
-			<li><a href="#">饰品</a></li>
-			<li class="last"><a href="#">Investor Relations</a></li>
+			<c:forEach items="${protypelist}" var="pty">
+				<c:forEach items="${pty.type}" var="ty">
+					<li><a href="/show/showtypePro/${ty.typeName}">${ty.typeName}</a></li>
+				</c:forEach>
+			</c:forEach>
 		</ul>
 	</div>
 </div>
 <div id="position" class="wrap">
-	您现在的位置：<a href="index.jsp">易买网</a> &gt; 购物车
+	您现在的位置：<a href="/show/index">易买网</a> &gt; 购物车
 </div>
 <div class="wrap">
 	<div id="shopping">
@@ -56,9 +68,10 @@
 			<div class="box">
 				<div class="msg">
 					<p>恭喜：购买成功！</p>
-					<p>正在进入首页...</p>
+					<p>您的商品正在打包飞往您的手中</p>
+					<p>5秒后进入首页... <a href="/show/index">立即进入首页</a></p>
 					<script type="text/javascript">
-						setTimeout("location.href='index.jsp'", 3000);
+						setTimeout("location.href='/show/index'", 5000);
 					</script>
 				</div>
 			</div>

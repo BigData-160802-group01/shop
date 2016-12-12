@@ -107,6 +107,21 @@ public class UserService implements IUserService {
         }
     }
 
+    /**
+     * 注册时 验证用户名是否存在
+     * @param username
+     * @return
+     */
+    public String searchusername1(String username){
+        User user=userDao.load1(username);
+        if (user!=null){
+            return "false";
+        }else {
+            return "OK";
+        }
+    }
+
+
     public String judgeStatus(HttpSession session) {
         User user=(User)session.getAttribute("LoginUser");
         if (user!=null){

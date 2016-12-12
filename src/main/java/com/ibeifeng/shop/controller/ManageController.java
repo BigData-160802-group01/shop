@@ -1,10 +1,8 @@
 package com.ibeifeng.shop.controller;
 
+import com.ibeifeng.shop.dao.INewsDao;
 import com.ibeifeng.shop.dao.IProTypeListDao;
-import com.ibeifeng.shop.model.ProType;
-import com.ibeifeng.shop.model.ProTypeList;
-import com.ibeifeng.shop.model.Product;
-import com.ibeifeng.shop.model.User;
+import com.ibeifeng.shop.model.*;
 import com.ibeifeng.shop.service.*;
 import com.ibeifeng.shop.util.Pager;
 import org.apache.commons.io.FileUtils;
@@ -37,6 +35,8 @@ public class ManageController {
     private IProTypeService proTypeService;
     private IProductService productService;
     private IOrderService orderService;
+    private IGuestBookService guestBookService;
+    private INewsService newsService;
 
     /**
      * 显示所有用户信息
@@ -246,8 +246,125 @@ public class ManageController {
         return "WEB-INF/manage/order";
     }
 
+    /**
+     * 跳转至留言页面
+     * 查询出留言集合 返回至页面
+     * @param model
+     * @return
+     */
+    @GetMapping(value = "/guestbook/list")
+    public String guestbookList(Model model){
+        model.addAttribute("guestBooklist",guestBookService.list());
+        return "WEB-INF/manage/guestbook";
+    }
 
+    /**
+     * 修改单个留言记录
+     * @param id
+     * @param model
+     * @return
+     */
+    @GetMapping(value = "/guestbook/modify/{id}")
+    public String beforupdateguest(@PathVariable int id,Model model){
+        GuestBook guestBook=guestBookService.load(id);
+        model.addAttribute("updateGuestBook",guestBook);
+        return "WEB-INF/manage/guestbook-modify";
+    }
 
+    /**
+     * 进行修改留言处理，处理完成进入留言列表页面
+     * @param replytime
+     * @param createtime
+     * @param guestBook
+     * @param result
+     * @return
+     */
+    @PostMapping(value = "/guestbook/modify")
+    public String updateguestbook(@DateTimeFormat(pattern="yyyy-MM-dd")Date replytime,@DateTimeFormat(pattern="yyyy-MM-dd")Date createtime,GuestBook guestBook,BindingResult result){
+        guestBook.setUser(userService.load(guestBook.getUser().getId()));
+        guestBook.setReplytime(replytime);
+        guestBook.setCreatetime(createtime);
+        guestBookService.update(guestBook);
+        return "redirect:/manager/guestbook/list";
+    }
+
+    /**
+     * 删除留言，并且跳转至留言列表
+     * @param id
+     * @return
+     */
+    @GetMapping(value = "/guestbook/delete/{id}")
+    public String deleteguestbook(@PathVariable int id){
+        guestBookService.delete(id);
+        return "redirect:/manager/guestbook/list";
+    }
+
+    /**
+     * 跳转至新闻列表
+     * @param model
+     * @return
+     */
+    @GetMapping(value = "/news/list")
+    public String newsList(Model model){
+        model.addAttribute("newsList",newsService.list());
+        return "WEB-INF/manage/news";
+    }
+
+    /**
+     * 跳转至新闻修改页面
+     * 查询出需要修改的新闻
+     * @param id
+     * @param model
+     * @return
+     */
+    @GetMapping(value = "/news/update/{id}")
+    public String updateNews(@PathVariable int id,Model model){
+        News news=newsService.load(id);
+       model.addAttribute("updateNews",news);
+        return "WEB-INF/manage/news-modify";
+    }
+
+    /**
+     * 执行修改新闻的操作
+     * @param title
+     * @param content
+     * @param id
+     * @return
+     */
+    @PostMapping(value = "/news/update")
+    public String updateNews(String title,String content,int id){
+        News news=newsService.load(id);
+        news.setNewContent(content);
+        news.setTitle(title);
+        newsService.update(news);
+        return "redirect:/manager/news/list";
+    }
+
+    /**
+     * 根据id 执行删除news 的操作
+     * 成功后跳转至news 列表页面
+     * @param id
+     * @return
+     */
+    @GetMapping(value = "/news/delete/{id}")
+    public String deleteNews(@PathVariable int id){
+        newsService.delete(id);
+        return "redirect:/manager/news/list";
+    }
+    @GetMapping(value = "/news/addNews")
+    public String addNews(){
+        return "WEB-INF/manage/news-add";
+    }
+    @PostMapping(value = "/news/addNews")
+    public String addNews(News news,BindingResult result){
+        newsService.add(news);
+        return "redirect:/manager/news/list";
+    }
+
+//    @PostMapping(value = "/order/byid")
+//    public String searchOrderById(int entityId,String userName){
+//
+//    }
 
 
 
@@ -268,8 +385,14 @@ public class ManageController {
     }
 
 
-
-
+    @Resource
+    public void setNewsService(INewsService newsService) {
+        this.newsService = newsService;
+    }
+    @Resource
+    public void setGuestBookService(IGuestBookService guestBookService) {
+        this.guestBookService = guestBookService;
+    }
     @Resource
     public void setOrderService(IOrderService orderService) {
         this.orderService = orderService;

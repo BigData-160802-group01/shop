@@ -13,16 +13,16 @@
 </head>
 <body>
 <div id="header" class="wrap">
-	<div id="logo"><img src="/resources/images/logo.gif" /></div>
-	<div class="help"><a href="/page/index.jsp">返回前台页面</a></div>
+	<div id="logo"><img src="/resources/images/logo.gif" width="120" /></div>
+	<div class="help"><a href="/show/index">返回前台页面</a></div>
 	<div class="navbar">
 		<ul class="clearfix">
-			<li class="current"><a href="index.jsp">首页</a></li>
-			<li><a href="user.jsp">用户</a></li>
-			<li><a href="product.jsp">商品</a></li>
-			<li><a href="order.jsp">订单</a></li>
-			<li><a href="guestbook.jsp">留言</a></li>
-			<li><a href="news.jsp">新闻</a></li>
+			<li class="current"><a href="/user/manager">首页</a></li>
+			<li><a href="/manager/user/list">用户</a></li>
+			<li><a href="/manager/productClass/list">商品</a></li>
+			<li><a href="/manager/order/list">订单</a></li>
+			<li><a href="/manager/guestbook/list">留言</a></li>
+			<li><a href="/manager/news/list">新闻</a></li>
 		</ul>
 	</div>
 </div>
@@ -32,23 +32,23 @@
 	</div>
 </div>
 <div id="position" class="wrap">
-	您现在的位置：<a href="index.jsp">易买网</a> &gt; 管理后台
+	您现在的位置：<a href="/show/index">易买网</a> &gt; 管理后台
 </div>
 <div id="main" class="wrap">
 	<div id="menu-mng" class="lefter">
 		<div class="box">
 			<dl>
 				<dt>用户管理</dt>
-				<dd><a href="user.jsp">用户管理</a></dd>
-			  <dt>商品信息</dt>
-				<dd><em><a href="productClass-add.jsp">新增</a></em><a href="productClass.jsp">分类管理</a></dd>
-				<dd><em><a href="product-add.jsp">新增</a></em><a href="product.jsp">商品管理</a></dd>
+				<dd><a href="/manager/user/list">用户管理</a></dd>
+				<dt>商品信息</dt>
+				<dd><em><a href="/manager/productClass/addtype">新增</a></em><a href="/manager/productClass/list">分类管理</a></dd>
+				<dd><em><a href="/manager/product/addproduct">新增</a></em><a href="/manager/product/list">商品管理</a></dd>
 				<dt>订单管理</dt>
-				<dd><a href="order.jsp">订单管理</a></dd>
+				<dd><a href="/manager/order/list">订单管理</a></dd>
 				<dt>留言管理</dt>
-				<dd><a href="guestbook.jsp">留言管理</a></dd>
+				<dd><a href="/manager/guestbook/list">留言管理</a></dd>
 				<dt>新闻管理</dt>
-				<dd><em><a href="news-add.jsp">新增</a></em><a href="news.jsp">新闻管理</a></dd>
+				<dd><em><a href="/manager/news/addNews">新增</a></em><a href="/manager/news/list">新闻管理</a></dd>
 			</dl>
 		</div>
 	</div>

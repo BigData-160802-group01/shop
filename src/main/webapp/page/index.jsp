@@ -6,82 +6,111 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>易买网 - 首页</title>
 <link type="text/css" rel="stylesheet" href="/resources/css/style.css" />
+<style type="text/css">
+		#mydiv{
+			display: none;
+			background-color: rgba(174,174,174,0.5);
+			filter:alpha(opacity=50);/*IE浏览器的半透明样式*/
+			width:100%;
+			height:100%;
+			position:absolute;/*层为浮动层*/
+			left:1px;
+			top:1px;
+		}
+	</style>
 <script type="text/javascript" src="/resources/scripts/jquery-1.8.3.min.js"></script>
 <script type="text/javascript" src="/resources/scripts/function.js"></script>
+<script type="text/javascript">
+		function init(){
+			mydiv.style.display="none";
+		}
+		function change(){
+			mydiv.style.display="block";
+		}
+        $(function () {
+            $("#logsub").click(function () {
+                var a=userId.value;
+                var b=password.value;
+                var c=code.value;
+                $.ajax({
+                    url:"/user/login1",
+                    type:"post",
+                    data:{username:a,password:b,code:c},
+                    dataType:"text",
+                    success: function (dddd) {
+                        if (dddd=="success"){
+                            $("#mydiv").css("display","none");
+                            location.reload();
+                        }else {
+                            $("#showerror td span").append(dddd);
+                        }
+
+                    }});
+            })
+        })
+
+	</script>
 </head>
 <body>
-<%--<div id="welcomeImage">--%>
-    <%--<img width="100%" height="150" src="/resources/images/banner.jpg" alt="welcome">--%>
-<%--</div>--%>
-<div id="header" class="wrap">
-	<div id="logo"><img src="/resources/images/logo.gif" /></div>
+<div id="Top">
 	<div class="help">
-		<a href="shopping.jsp" id="shoppingBag" class="shopping">购物车X件</a>
-		<c:if test="${!empty LoginUser}">
-			${LoginUser.name}
-			<a class="button" id="logout" href="/user/logout">注销</a>
-		</c:if>
-		<c:if test="${empty LoginUser}">
-			<a href="/page/login.jsp">登录</a>
-			<a href="/user/register">注册</a>
-		</c:if>
-		<a href="guestbook.jsp">留言</a>
-		<a href="/user/manager">后台管理</a></div>
-		<div class="navbar">
-			<ul class="clearfix">
-				<li class="current"><a href="#">首页</a></li>
-				<li><a href="#">图书</a></li>
-				<li><a href="#">百货</a></li>
-				<li><a href="#">品牌</a></li>
-				<li><a href="#">促销</a></li>
+		<div class="help2">
+			<ul class="h_t_l">
+				<li class="top_gray">您好，欢迎光临易买网！</li>
+				<c:if test="${!empty LoginUser}">
+				<li class="top_red">${LoginUser.name}</li>
+				<li class="top_red"><a class="button" id="logout" href="/user/logout">注销</a></li>
+				</c:if>
+				<c:if test="${empty LoginUser}">
+				<li class="top_red"><a href="#" onclick="change()">登录</a></li>
+				<li class="top_red"><a href="/user/register">注册</a></li>
+				</c:if>
 			</ul>
 		</div>
+		<div class="help1">
+			<a href="/show/shopping" id="shoppingBag" class="shopping">购物车X件</a>
+			<a href="##">我的订单</a>
+			<a href="##">帮助中心</a>
+			<a href="guestbook.html">留言</a>
+			<a href="/user/manager">后台管理</a>
+		</div>
+	</div>
+</div>
+<div id="header" class="wrap" style="margin-bottom: 20px">
+	<div id="logo"><img src="/resources/images/logo.gif" width="160" /></div>
+	<div id="search" style="font-size: 0;float: left;margin-left: 50px;margin-top: 20px">
+
+		<input type="text" name="" class="search_1" readonly="readonly" value="  站内">
+		<input type="text" name="" class="search_2" placeholder="   请输入商品名称">
+		<input type="button" name="" class="search_3" value="搜索">
+	</div>
+	<div class="top1_m" style="float: left;margin-left: 40px;margin-top: 5px">
+		<img src="/resources/images/top_ser.gif" alt="" width="300px" height="50">
+	</div>
 </div>
 <div id="childNav">
 	<div class="wrap">
 		<ul class="clearfix">
-			<li class="first"><a href="#">音乐</a></li>
-			<li><a href="#">影视</a></li>
-			<li><a href="#">少儿</a></li>
-			<li><a href="#">动漫</a></li>
-			<li><a href="#">小说</a></li>
-			<li><a href="#">外语</a></li>
-			<li><a href="#">数码相机</a></li>
-			<li><a href="#">笔记本</a></li>
-			<li><a href="#">羽绒服</a></li>
-			<li><a href="#">秋冬靴</a></li>
-			<li><a href="#">运动鞋</a></li>
-			<li><a href="#">美容护肤</a></li>
-			<li><a href="#">家纺用品</a></li>
-			<li><a href="#">婴幼奶粉</a></li>
-			<li><a href="#">饰品</a></li>
-			<li class="last"><a href="#">Investor Relations</a></li>
+			<c:forEach items="${protypelist}" var="pty">
+				<c:forEach items="${pty.type}" var="ty">
+				<li><a href="/show/showtypePro/${ty.typeName}">${ty.typeName}</a></li>
+				</c:forEach>
+			</c:forEach>
 		</ul>
 	</div>
 </div>
 <div id="main" class="wrap">
 	<div class="lefter">
 		<div class="box">
+
 			<h2>商品分类</h2>
 			<dl>
-				<dt>图书音像</dt>
-				<dd><a href="product-list.jsp">图书</a></dd>
-				<dd><a href="product-list.jsp">音乐</a></dd>
-				<dt>百货</dt>
-				<dd><a href="product-list.jsp">运动健康</a></dd>
-				<dd><a href="product-list.jsp">服装</a></dd>
-				<dd><a href="product-list.jsp">家居</a></dd>
-				<dd><a href="product-list.jsp">美妆</a></dd>
-				<dd><a href="product-list.jsp">母婴</a></dd>
-				<dd><a href="product-list.jsp">食品</a></dd>
-				<dd><a href="product-list.jsp">手机数码</a></dd>
-				<dd><a href="product-list.jsp">家具首饰</a></dd>
-				<dd><a href="product-list.jsp">手表饰品</a></dd>
-				<dd><a href="product-list.jsp">鞋包</a></dd>
-				<dd><a href="product-list.jsp">家电</a></dd>
-				<dd><a href="product-list.jsp">电脑办公</a></dd>
-				<dd><a href="product-list.jsp">玩具文具</a></dd>
-				<dd><a href="product-list.jsp">汽车用品</a></dd>
+				<c:forEach items="${protypelist}" var="ptl">
+					<dt>${ptl.totalListName}</dt>
+					<c:forEach items="${ptl.type}" var="pt">
+						<dd><a href="/show/showtypePro/${pt.typeName}">${pt.typeName}</a></dd>
+					</c:forEach>
+				</c:forEach>
 			</dl>
 		</div>
 		<div class="spacer"></div>
@@ -105,64 +134,21 @@
                     <li><img src="/resources/images/product/banner_4.jpg"/></li>
                 </ul>
             </div>
-			<h2>商品列表</h2>
 			<ul class="product clearfix">
-				<li>
-					<dl>
-						<dt><a href="product-view.jsp" target="_self"><img src="/resources/images/product/1.jpg" /></a></dt>
-						<dd class="title"><a href="product-view.jsp" target="_self">法国德菲丝松露精品巧克力500g/盒</a></dd>
-						<dd class="price">￥108.0</dd>
-					</dl>
-				</li>
-				<li>
-					<dl>
-						<dt><a href="product-view.jsp" target="_self"><img src="/resources/images/product/2.jpg" /></a></dt>
-						<dd class="title"><a href="product-view.jsp" target="_self">乐扣普通型保鲜盒圣诞7件套</a></dd>
-						<dd class="price">￥69.90</dd>
-					</dl>
-				</li>
-				<li>
-					<dl>
-						<dt><a href="product-view.jsp" target="_self"><img src="/resources/images/product/3.jpg" /></a></dt>
-						<dd class="title"><a href="product-view.jsp" target="_self">欧珀莱均衡保湿四件套</a></dd>
-						<dd class="price">￥279.0</dd>
-					</dl>
-				</li>
-				<li>
-					<dl>
-						<dt><a href="product-view.jsp" target="_self"><img src="/resources/images/product/4.jpg" /></a></dt>
-						<dd class="title"><a href="product-view.jsp" target="_self">联想笔记本电脑 高速独立显存</a></dd>
-						<dd class="price">￥4199</dd>
-					</dl>
-				</li>
-				<li>
-					<dl>
-						<dt><a href="product-view.jsp" target="_self"><img src="/resources/images/product/5.jpg" /></a></dt>
-						<dd class="title"><a href="product-view.jsp" target="_self">法姿韩版显瘦彩边时尚牛仔铅笔裤</a></dd>
-						<dd class="price">￥49.00</dd>
-					</dl>
-				</li>
-				<li>
-					<dl>
-						<dt><a href="product-view.jsp" target="_self"><img src="/resources/images/product/6.jpg" /></a></dt>
-						<dd class="title"><a href="product-view.jsp" target="_self">Genius925纯银施华洛世奇水晶吊坠</a></dd>
-						<dd class="price">￥69.90</dd>
-					</dl>
-				</li>
-				<li>
-					<dl>
-						<dt><a href="product-view.jsp" target="_self"><img src="/resources/images/product/10.jpg" /></a></dt>
-						<dd class="title"><a href="product-view.jsp" target="_self">利仁2018M福满堂电饼铛 好用实惠</a></dd>
-						<dd class="price">￥268.0</dd>
-					</dl>
-				</li>
-				<li>
-					<dl>
-						<dt><a href="product-view.jsp" target="_self"><img src="/resources/images/product/8.jpg" /></a></dt>
-						<dd class="title"><a href="product-view.jsp" target="_self">达派高档拉杆箱20寸 经典款式</a></dd>
-						<dd class="price">￥198.0</dd>
-					</dl>
-				</li>
+				<c:forEach items="${protypelist}" var="ptl">
+					<c:forEach items="${ptl.type}" var="pt">
+						<h2>${pt.typeName}</h2>
+						<c:forEach items="${pt.products}" var="pr" begin="1" end="8">
+							<li>
+								<dl>
+									<dt><a href="/show/productC/${pr.id}" target="_self"><img src="${pr.pitch}" style="width: 100px;height: 100px" /></a></dt>
+									<dd class="title"><a href="/show/productC/${pr.id}" target="_self">${pr.proname}</a></dd>
+									<dd class="price">￥${pr.price}</dd>
+								</dl>
+							</li>
+						</c:forEach>
+					</c:forEach>
+				</c:forEach>
 			</ul>
 		</div>
 		<div class="side">			
@@ -170,16 +156,9 @@
 			<div class="news-list">
 				<h4>新闻动态</h4>
 				<ul>
-					<li><a href="news-view.jsp" target="_self">抢钱啦</a></li>
-					<li><a href="news-view.jsp" target="_self">抢钱啦</a></li>
-					<li><a href="news-view.jsp" target="_self">抢钱啦</a></li>
-					<li><a href="news-view.jsp" target="_self">抢钱啦</a></li>
-					<li><a href="news-view.jsp" target="_self">抢钱啦</a></li>
-					<li><a href="news-view.jsp" target="_self">抢钱啦</a></li>
-					<li><a href="news-view.jsp" target="_self">抢钱啦</a></li>
-                    <li><a href="news-view.jsp" target="_self">抢钱啦</a></li>
-					<li><a href="news-view.jsp" target="_self">抢钱啦</a></li>
-					<li><a href="news-view.jsp" target="_self">抢钱啦</a></li>
+					<c:forEach items="${newslist}" var="nl">
+					<li><a href="news-view.jsp" target="_self">${nl.title}</a></li>
+					</c:forEach>
 				</ul>
 			</div>
 		</div>
@@ -188,6 +167,60 @@
 </div>
 <div id="footer">
 	Copyright &copy; 2013 北大青鸟 All Rights Reserved. 京ICP证1000001号
+</div>
+
+<div id="mydiv">
+<div id="register" class="wrap">
+	<div class="shadow">
+		<em class="corner lb"></em>
+		<em class="corner rt"></em>
+		<div class="box">
+			<h1>欢迎回到易买网</h1>
+			<form id="loginForm" method="post" action="/user/login" onsubmit="return false" >
+				<table>
+
+					<tr>
+						<td class="field">用户名：</td>
+						<td>
+							<input class="text" type="text" id="userId" name="username" />
+							<span></span>
+						</td>
+					</tr>
+					<tr>
+						<td class="field">登录密码：</td>
+						<td>
+							<input class="text" type="password" id="password" name="password" />
+							<span></span>
+						</td>
+					</tr>
+					<tr>
+						<td class="field">验证码：</td>
+						<td>
+							<img src="/user/validLogin" id="safeCode"/><a id="changeCode" href="#">看不清，换一张</a><br>
+							<input type="text" name="code" id="code">
+						</td>
+					</tr>
+                    </tr>
+                    <tr id="showerror">
+                        <td class="field" colspan="2" style="text-align: left;padding-left: 100px">
+                            <span style="color:red;font-size: 15px;display: block">${errorMessage}</span>
+                        </td>
+                    </tr>
+                    <tr>
+					<tr>
+						<td></td>
+						<td>
+							<label class="ui-green"><input type="submit" id="logsub" name="submit" value="立即登录" /></label>
+							&nbsp;&nbsp;&nbsp;&nbsp;
+							<label class="ui-green"><input type="button" name="goback" onclick="init()" value="返回主页" /></label>
+						</td>
+					</tr>
+				</table>
+			</form>
+		</div>
+	</div>
+	<div class="clear"></div>
+</div>
 </div>
 </body>
 </html>

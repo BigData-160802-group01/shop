@@ -4,6 +4,7 @@ import com.ibeifeng.shop.model.Order;
 import com.ibeifeng.shop.model.Product;
 import com.ibeifeng.shop.util.Pager;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -16,4 +17,6 @@ public interface IOrderService {
     Order load(int id);
     Pager<Order> list();
     List<Order> listnolimit();
+    void createOrder(HttpSession session,Order order);
+    List<Order> listByProduct(String hql,Object[] param);
 }

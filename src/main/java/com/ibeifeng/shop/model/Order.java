@@ -15,10 +15,11 @@ public class Order {
     //定义 订单状态   0 为 未付款  1位 已付款
     private int status;
     private Date createtime;
+    private int payType;
+    //商品数量
+    private int count;
     //定义付款方式  0 为现金  1 为 货到付款
     private double totalPrice;
-    private int payType;
-    private int count;
     private User user;
     private Shop shop;
     private Product product;

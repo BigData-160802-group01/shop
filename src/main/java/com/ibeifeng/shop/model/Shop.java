@@ -41,6 +41,7 @@ public class Shop {
         this.orders = orders;
     }
 
+
     public Shop(int id) {
         this.id = id;
     }

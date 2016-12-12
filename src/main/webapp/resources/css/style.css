@@ -31,6 +31,21 @@ a:hover, a:active { color:#3a52a8; text-decoration:underline; }
 .shadow .box .msg { text-align:center; padding:20px; }
 
 .wrap { width:960px; margin:0 auto; }
+
+#Top{width: 99.9%;background: rgba(235,235,235,0.6);border: 1px solid rgb(195,195,195);height: 20px }
+#Top .help{width: 960px;margin: 0 auto;height: 20px}
+#Top .help .help1{width: 350px;float: right}
+#Top .help .help1 a{margin: 0 5px;color: rgb(102,102,102)}
+#Top .help .help1 a:hover{background:white;}
+#Top .help .help1 a.shopping{padding-left:18px; background:url(../images/bg.png) left -69px no-repeat;}
+#Top .help .help2{width: 250px;float: left}
+.h_t_l>li{float: left;height: 20px;line-height: 20px;color: rgb(102,102,102)}
+.h_t_l>li>a{color: red;text-decoration: none;margin: 0 5px}
+.search_2{height: 26px;width: 300px;border:2px solid rgb(252,126,49);background:rgb(253,253,253);vertical-align: top;font-size: 13px;border-left:none;}
+.search_3 {height: 26px;width: 65px;border: 2px solid rgb(252,126,49);background: rgb(252,126,49);vertical-align: top;font-size: 13px;color:white;cursor: pointer;}
+.search_1{border:2px solid rgb(252,126,49);appearance-webkit-appearance:none;background:white;height: 26px;width: 65px;font-size: 18px;color: rgb(252,126,49);border-right-color: rgb(220,220,220);}
+.search{padding: 0;font-size: 0}
+
 #header { overflow:hidden; padding-top:10px;}
 #header #logo { float:left; width:120px; text-align:center; }
 #header .help { float:right;}
@@ -122,7 +137,7 @@ a:hover, a:active { color:#3a52a8; text-decoration:underline; }
 .news-list ul { padding:5px 10px; }
 .news-list ul li { background:url(../images/bg.png) -240px -153px no-repeat; padding-left:10px; white-space:nowrap; }
 .news-list ul li a { color:#666; }
-#main .main h2 { font-size:14px; line-height:30px; background:url(../images/bg.png) -230px -100px no-repeat; border-bottom:2px solid #fbaa62; padding-left:25px; }
+#main .main h2 { font-size:14px; line-height:30px; background:url(../images/bg.png) -230px -100px no-repeat; border-bottom:2px solid #fbaa62; padding-left:25px;clear: left }
 ul.product li { width:110px; line-height:18px; height:160px; float:left; display:inline; margin:9px; }
 ul.product li dl dt { text-align:center; }
 ul.product li dl dt img { width:100px; height:100px; }
@@ -216,3 +231,24 @@ ul.product li dl dd.price { color:#c30; font-weight:bold; }
 #welcomeImage{position:relative;width:100%;top:0;margin:0 auto;text-align:center;text-align:center;z-index:99;display:none}
 
 #header #floatBag{position:absolute;background:#fff;z-index:100;display:none;border:1px #c0c0c0 solid}
+.userAdress{width: 200px;height:100px;display: inline-block;border: 2px dashed rgb(252,126,49);border-radius: 10px;margin-left: 30px;  }
+.userAdress:hover{cursor: pointer;border: 2px solid rgb(252,126,49);background: rgba(245,245,245,0.4)}
+.userAdress ul li{text-align: center;font-size: 12px;height: 30px;}
+.orderdetail table tbody tr{width: 800px;margin-top: 20px}
+.button1{margin-left: 450px;margin-top:30px;width: 350px;height: 100px;text-align: right;float: left}
+.button1 p{height: 30px;font-size: 12px;display: block}
+.button1 p span{font-weight: bolder;}
+
+.addAddress{float: left;margin-left: 50px;font-size: 16px}
+.addAddress p{color: rgb(252,126,49);}
+.addAddress table tr{height: 40px}
+.addAddress table tr td{line-height: 40px;}
+.addAddress table tr td button{margin-left: 150px;width: 120px;height: 30px;background: rgb(252,126,49);border: none;color: white}
+.addAddress table tr td button:hover{cursor: pointer;background: rgb(242,116,39)}
+.addAddress table tr td input.addinput{border:1px solid #ccc; width:320px; padding:4px 6px;}
+.showaddress{float: left;width: 600px;margin-left: 50px}
+.showaddress p{font-size: 16px;color: rgb(252,126,49);margin: 20px 0px}
+.showaddress table {width: 800px}
+.showaddress table .title td{height: 20px;line-height: 20px;text-align: center;background: rgb(235,235,235)}
+.showaddress table .addressbody td{text-align: center;height: 40px;line-height: 40px;color: darkgray;background: rgb(245,245,245)}
+

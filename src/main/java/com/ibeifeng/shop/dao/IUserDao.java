@@ -13,4 +13,5 @@ public interface IUserDao extends IBaseDao<User> {
     void update(User user);
     void delete(int id);
     List<User> list(String hql);
+    User load1(String username);
 }

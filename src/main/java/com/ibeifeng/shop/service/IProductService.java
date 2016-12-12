@@ -16,4 +16,5 @@ public interface IProductService {
     Product load(int id);
     Pager<Product> list();
     List<Product> listnolimit();
+    List<Product> listByTypeName(String name);
 }

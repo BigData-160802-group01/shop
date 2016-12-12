@@ -3,7 +3,7 @@
 <body>
 <h2>Hello World!</h2>
 <%
-    response.sendRedirect("/page/index.jsp");
+    response.sendRedirect("/show/index");
 %>
 </body>
 </html>

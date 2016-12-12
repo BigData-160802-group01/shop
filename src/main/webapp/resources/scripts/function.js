@@ -275,7 +275,7 @@ $(function(){
     });
     //点击换验证码
     $("#changeCode").click(function(){
-        $("#safeCode").attr("src","Number.jsp?id="+Math.random());
+        $("#safeCode").attr("src","/user/validLogin?id="+Math.random());
     });
     //注册页面验证
     $("#regForm").find("input[class='text']").bind({
@@ -393,8 +393,10 @@ $(function(){
         var p = $price.find("input").val();
         $price.find("span").text(p*$(this).val());
         $("#shopping").find("#total").text("总计：￥"+totalPrice());
+        $("#shopping").find("input[name='totalPrice']").val(totalPrice());
     });
     $("#shopping").find("#total").text("总计：￥"+totalPrice());
+    $("#shopping").find("input[name='totalPrice']").val(totalPrice());
     //注销
     // $("#logout").click(function(){
     //     if(confirm("购物车中尚有未结算的商品，是否结账？")) {
@@ -464,4 +466,10 @@ $(function(){
         $(this).find("span").addClass("error").html("留言不得多于100字");
         return false;
     });
+
+    $($("#showtype tr")[0]).nextUntil('td').hide();
+    $("#showtype tr").click(function(){
+        $(this).parent().nextUntil("#showtype").slideToggle("fast");
+    });
+
 })

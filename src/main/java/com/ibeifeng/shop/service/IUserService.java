@@ -16,6 +16,7 @@ public interface IUserService {
     User load(int id);
     void add(User user,HttpSession session);
     String searchusername(String username);
+    String searchusername1(String username);
     String judgeStatus(HttpSession session);
     Pager<User> pageList();
     void delete(User user);

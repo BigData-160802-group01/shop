@@ -34,6 +34,11 @@ public class ProTypeService implements IProTypeService {
         proTypeDao.add(type);
     }
 
+    public List<ProType> listnolimit() {
+        String Hql="from ProType";
+        return proTypeDao.list(Hql,null);
+    }
+
     /**
      * 修改二级分类
      * @param type

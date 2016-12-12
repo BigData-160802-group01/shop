@@ -14,7 +14,7 @@ import java.util.Set;
 public class ProType {
     private int id;
     private String typeName;
-    private Set<Product> products;
+        private Set<Product> products;
     private ProTypeList proTypeList;
 
     public ProType(int id, String typeName) {
@@ -59,11 +59,8 @@ public class ProType {
     }
 
     public ProType() {
-
     }
-
     public ProType(String typeName) {
-
         this.typeName = typeName;
     }
 }

@@ -1,6 +1,7 @@
 package com.ibeifeng.shop.service;
 
 import com.ibeifeng.shop.model.ProTypeList;
+import com.ibeifeng.shop.model.Product;
 import com.ibeifeng.shop.model.Shop;
 import com.ibeifeng.shop.util.Pager;
 
@@ -17,4 +18,5 @@ public interface IProTypeListService {
     Pager<ProTypeList> list();
     ProTypeList loadByName(String name);
     List<ProTypeList> listnolimit();
+    List<ProTypeList> listByTypeName(String name);
 }

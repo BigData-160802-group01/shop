@@ -4,6 +4,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Set;
 
 /**
  * Created by Administrator on 2016/12/1.
@@ -22,6 +23,7 @@ public class User {
     private String email;
     private String phone;
     private String address;
+    private Set<UserAdress> userAdresses;
     //用户权限  0为普通用户  1位管理员
     private int status;
     //用户是否登陆  1为登陆  2为未登录
@@ -152,6 +154,14 @@ public class User {
 
     public void setNickname(String nickname) {
         this.nickname = nickname;
+    }
+    @OneToMany(mappedBy = "aduser")
+    public Set<UserAdress> getUserAdresses() {
+        return userAdresses;
+    }
+
+    public void setUserAdresses(Set<UserAdress> userAdresses) {
+        this.userAdresses = userAdresses;
     }
 
     @Override

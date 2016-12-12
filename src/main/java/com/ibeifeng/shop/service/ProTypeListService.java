@@ -55,8 +55,11 @@ public class ProTypeListService implements IProTypeListService {
         return proTypeListDao.list(hql);
     }
 
-
-
+    public List<ProTypeList> listByTypeName(String name) {
+        String hql="from ProTypeList where totalListName=?";
+        Object[] param={name};
+        return proTypeListDao.list(hql,param);
+    }
 
     @Resource
     public void setProTypeDao(IProTypeDao proTypeDao) {
